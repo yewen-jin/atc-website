@@ -14,14 +14,47 @@
 
 body {
     background-color: var(--bg-color); /* Defaults to black */
-    background-image: url("../img/background.jpg");
-    background-repeat: no-repeat;
-    background-size: auto; /* Ensures original size */
-    background-attachment: fixed;
-    background-position: top left;
     color: var(--text-color);
     font-family: "W95Fa", "Courier New", monospace;
     line-height: 1.6;
+}
+
+/* Pseudo-element for the flickering background image */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-image: url("../img/background.jpg");
+    background-repeat: repeat; /* Repeating the background */
+    background-size: 40%;
+    background-attachment: fixed;
+    background-position: top left;
+    /* Optional: apply a subtle fade or blur if the edges look like harsh borders */
+    filter: blur(2px) contrast(1.2);
+    animation: bgFlicker 3s infinite alternate;
+}
+
+@keyframes bgFlicker {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    55% {
+        opacity: 0.95;
+    }
+    70% {
+        opacity: 0.6;
+    }
+    85% {
+        opacity: 0.9;
+    }
 }
 
 .page-container {
@@ -52,7 +85,7 @@ img {
 .site-header img {
     max-width: 100%;
     height: auto;
-    animation: flicker 2s infinite alternate;
+    /*animation: flicker 2s infinite alternate;*/
 }
 
 .glowing-text {
