@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Th3_B0dy_Is_0bsOL3t3 — Symoné</title>
+  <style>
+    @font-face { font-family:"W95Fa"; src:url("../../assets/fonts/W95FA.otf") format("opentype"); }
+    @font-face { font-family:"CursedGothic"; src:url("../../assets/fonts/cursed_gothic/CursedGothic.ttf") format("truetype"); }
+    @font-face { font-family:"CursedGothic-Witch"; src:url("../../assets/fonts/cursed_gothic/CursedGothic-Witch.ttf") format("truetype"); }
+    @font-face { font-family:"Pixeltype"; src:url("../../assets/fonts/Pixeltype.ttf") format("truetype"); }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background: #cc66ff;
+      font-family: "Pixeltype", "W95Fa", "Courier New", monospace;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    /* ── PAGE SHELL ── */
+    .page {
+      width: 100%;
+      max-width: 960px;
+      background: #cc66ff;
+    }
+
+    /* ── TITLE ── */
+    .title-bar {
+      text-align: center;
+      padding: 20px 0 16px;
+    }
+    .title-bar h1 {
+      font-family: "Pixeltype", "W95Fa", monospace;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      color: #000;
+      line-height: 1;
+      letter-spacing: -.01em;
+      text-shadow: none;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .main-layout {
+      display: flex;
+      gap: 0;
+      align-items: stretch;
+    }
+
+    /* ── LEFT NAV ── */
+    .left-nav {
+      width: 160px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 12px 8px 12px 0;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      cursor: pointer;
+      padding: 6px 8px;
+      transition: background .2s;
+    }
+    .nav-item:hover { background: rgba(0,0,0,0.06); }
+    .nav-item.active .nav-label { text-decoration: underline; }
+
+    /* Holographic icon placeholder */
+    .nav-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Each icon gets its own holographic gradient */
+    .icon-obsolence {
+      background: linear-gradient(135deg,
+        #8b5cf6 0%, #c084fc 20%, #818cf8 35%,
+        #6366f1 50%, #a78bfa 65%, #7c3aed 80%, #4f46e5 100%);
+      box-shadow: inset 0 0 10px rgba(255,255,255,0.3), 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .icon-obsolence::after {
+      content:"✦"; position:absolute; inset:0; display:flex;
+      align-items:center; justify-content:center;
+      font-size:28px; color:rgba(255,255,255,0.9);
+      text-shadow: 0 0 6px #c084fc;
+    }
+
+    .icon-reflections {
+      background: radial-gradient(circle at 40% 35%,
+        #a5f3fc 0%, #67e8f9 20%, #22d3ee 40%,
+        #06b6d4 55%, #0ea5e9 70%, #38bdf8 85%, #7dd3fc 100%);
+      box-shadow: inset 0 0 12px rgba(255,255,255,0.4), 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .icon-reflections::after {
+      content:"☺"; position:absolute; inset:0; display:flex;
+      align-items:center; justify-content:center;
+      font-size:32px; color:rgba(255,255,255,0.95);
+    }
+
+    .icon-readups {
+      background: linear-gradient(160deg,
+        #fda4af 0%, #fb7185 20%, #f43f5e 35%,
+        #e879a0 50%, #d946ef 65%, #a855f7 80%, #818cf8 100%);
+      box-shadow: inset 0 0 10px rgba(255,255,255,0.3), 0 2px 8px rgba(0,0,0,0.25);
+    }
+    .icon-readups::after {
+      content:"✿"; position:absolute; inset:0; display:flex;
+      align-items:center; justify-content:center;
+      font-size:28px; color:rgba(255,255,255,0.9);
+    }
+
+    .icon-credits {
+      background: radial-gradient(circle at 50% 40%,
+        #bfdbfe 0%, #93c5fd 25%, #60a5fa 45%,
+        #3b82f6 60%, #818cf8 75%, #a5b4fc 90%, #c7d2fe 100%);
+      box-shadow: inset 0 0 10px rgba(255,255,255,0.4), 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .icon-credits::after {
+      content:"✉"; position:absolute; inset:0; display:flex;
+      align-items:center; justify-content:center;
+      font-size:26px; color:rgba(255,255,255,0.9);
+    }
+
+    .nav-label {
+      font-family: "Pixeltype", "W95Fa", monospace;
+      font-size: 1rem;
+      color: #000;
+      line-height: 1.2;
+      font-weight: bold;
+    }
+
+    /* ── CONTENT AREA ── */
+    .content-area {
+      flex: 1;
+      background: #ffb3e6;
+      position: relative;
+      min-height: 460px;
+      overflow: hidden;
+    }
+
+    /* Sections */
+    .section { display: none; width: 100%; height: 100%; }
+    .section.active { display: flex; flex-direction: column; }
+
+    /* Enter Obsolence — video */
+    #section-obsolence {
+      background: #ffb3e6;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      min-height: 460px;
+    }
+
+    .video-placeholder {
+      width: 100%;
+      max-width: 640px;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #ffb3e6 0%, #ff80d5 30%, #cc66ff 60%, #ffb3e6 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-placeholder::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 70%, rgba(255,180,220,0.8) 0%, rgba(200,100,255,0.3) 60%, transparent 80%);
+    }
+
+    .video-label {
+      font-family: "W95Fa", monospace;
+      font-size: 0.8rem;
+      color: rgba(0,0,0,0.5);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      z-index: 1;
+      text-align: center;
+    }
+
+    /* Actual video element (shown when src present) */
+    .content-video {
+      width: 100%;
+      max-width: 640px;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: none;
+    }
+
+    .note-tag {
+      font-family: "W95Fa", monospace;
+      font-size: 0.75rem;
+      color: rgba(0,0,0,0.45);
+      margin-top: 10px;
+      letter-spacing: .05em;
+    }
+
+    /* Other sections */
+    #section-reflections,
+    #section-readups,
+    #section-credits {
+      padding: 32px;
+      background: #ffb3e6;
+      min-height: 460px;
+    }
+
+    .section-heading {
+      font-family: "CursedGothic", serif;
+      font-size: 2.2rem;
+      color: #000;
+      margin-bottom: 16px;
+    }
+
+    .section-body {
+      font-family: "Pixeltype", "W95Fa", monospace;
+      font-size: 1rem;
+      color: #000;
+      line-height: 1.7;
+      max-width: 520px;
+      background: rgba(255,255,255,0.3);
+      padding: 16px;
+    }
+
+    /* ── BACK LINK ── */
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      font-family: "W95Fa", monospace;
+      font-size: 0.8rem;
+      color: rgba(0,0,0,0.5);
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(0,0,0,0.4);
+      transition: color .2s;
+    }
+    .back-link:hover { color: #000; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="title-bar">
+      <h1>Th3_B0dy_Is_0bsOL3t3</h1>
+    </div>
+
+    <div class="main-layout">
+      <!-- Left nav -->
+      <nav class="left-nav">
+        <div class="nav-item active" data-target="obsolence">
+          <div class="nav-icon icon-obsolence"></div>
+          <span class="nav-label">Enter Obsolence</span>
+        </div>
+        <div class="nav-item" data-target="reflections">
+          <div class="nav-icon icon-reflections"></div>
+          <span class="nav-label">Artist Reflections</span>
+        </div>
+        <div class="nav-item" data-target="readups">
+          <div class="nav-icon icon-readups"></div>
+          <span class="nav-label">Further Read Ups</span>
+        </div>
+        <div class="nav-item" data-target="credits">
+          <div class="nav-icon icon-credits"></div>
+          <span class="nav-label">About &amp; Credits</span>
+        </div>
+      </nav>
+
+      <!-- Content -->
+      <div class="content-area">
+        <!-- Enter Obsolence -->
+        <div class="section active" id="section-obsolence">
+          <!-- Swap video-placeholder for a real <video> once src is available -->
+          <div class="video-placeholder">
+            <span class="video-label">[ VIDEO PLAYS ON LOOP ]</span>
+          </div>
+          <span class="note-tag">video · autoplay · loop · muted</span>
+        </div>
+
+        <!-- Artist Reflections -->
+        <div class="section" id="section-reflections">
+          <h2 class="section-heading">Artist Reflections</h2>
+          <div class="section-body">
+            <p>[ Symoné's reflections on the work, the body, and obsolescence. Add content here. ]</p>
+          </div>
+        </div>
+
+        <!-- Further Read Ups -->
+        <div class="section" id="section-readups">
+          <h2 class="section-heading">Further Read Ups</h2>
+          <div class="section-body">
+            <p>[ Readings, references, and links related to the project. Add content here. ]</p>
+          </div>
+        </div>
+
+        <!-- About & Credits -->
+        <div class="section" id="section-credits">
+          <h2 class="section-heading">About &amp; Credits</h2>
+          <div class="section-body">
+            <p>Th3_B0dy_Is_0bsOL3t3 is a work by Symoné.</p>
+            <p style="margin-top:12px;">Accept the Cookies is an Immersive Arts funded collective using speculative fiction, gamification and interactivity to explore societies' ever changing relationship to cyberspace and the self.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="../../index.html" class="back-link">← Back to Overview</a>
+  </div>
+
+  <script>
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        item.classList.add('active');
+        document.getElementById('section-' + item.dataset.target).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -10,22 +10,29 @@ This is a vanilla HTML/CSS/JS website for the "Accept the Cookies" arts collecti
 ## Architecture & Structure
 - **No Build Step:** The site is served entirely as static HTML/CSS files. To preview, open `index.html` in a browser or run a simple local server (e.g., `python3 -m http.server` or `npx serve`).
 - **Main Entrypoint:** `/index.html` serves as the directory for the different artists.
-- **Artist Rooms:** Each artist has their own dedicated folder under `artists/` (e.g., `artists/jim/index.html`). Artist pages are allowed to have unique HTML layouts and custom CSS files (placed in `artists/<name>/assets/`), but they must still incorporate the global CSS to maintain the core aesthetic.
+- **Artist Rooms:** Each artist has their own dedicated folder under `artists/` (e.g., `artists/jim/index.html`). **Each artist room defines its own complete visual world inline** — its own `<style>` block, fonts, colors, and layout. Artist rooms intentionally do **not** link the homepage stylesheets; the four rooms (Jim, Livi, Loy, Symoné) each have a distinct aesthetic that would clash with the global retro theme. Artist rooms may reference shared font/image assets under `/assets/` directly via `../../assets/...`.
 - **Shared Assets:** All global fonts, images, and CSS are in `/assets/`.
 
 ## Styling & Conventions
-- **Two-File CSS System:** 
+
+### Homepage (`/index.html`) — global retro theme
+- **Two-File CSS System:**
   - `assets/css/styles.css`: Manages core layout, spacing, and left-aligned constraints.
   - `assets/css/retro-theme.css`: Manages the retro theme specifics (colors, typography, animations like scanlines and flicker).
-- **CSS Variables:** Never hardcode colors. Always use the CSS variables defined in the `:root` of `retro-theme.css`:
+- **CSS Variables:** Never hardcode colors on the homepage. Use the variables defined in the `:root` of `retro-theme.css`:
   - `--bg-color` (Backgrounds)
   - `--text-color` (Primary text)
   - `--accent-color` (Headings, primary accents)
   - `--highlight-color` (Hovers, glows)
   - `--border-color` (Borders, links)
-- **Typography:** The site uses a custom local font (`W95Fa`). Use `'W95Fa', 'Courier New', monospace` for themed text.
+- **Typography:** The homepage uses `'W95Fa', 'Courier New', monospace`.
+
+### Artist rooms — self-contained per-artist aesthetic
+- Each room has its own inline `<style>` block — colors, fonts, decorative elements are scoped to that page and chosen to express that artist's character.
+- Don't try to "harmonise" rooms with the global theme variables; they are deliberately distinct.
+- Each room loads only the fonts it actually uses via `@font-face` from `../../assets/fonts/...`.
+- Section-switching is done with a small inline `<script>` that toggles `.active` on nav items and `.section` panels — keep this pattern when adding new sections.
 
 ## Workflows & Adding Content
-- When adding a new artist, create a directory in `artists/`, give them an `index.html` that links back to `../../assets/css/styles.css` and `../../assets/css/retro-theme.css`. 
-- Avoid introducing inline styles for anything related to the retro aesthetic; always map it back to CSS variables.
+- When adding a new artist, create a directory in `artists/`, give them an `index.html` with its own self-contained `<style>` and visual identity.
 - The project is deployed via standard static hosting (e.g., Vercel or Cloudflare Pages) where the repository root is the publish directory.
