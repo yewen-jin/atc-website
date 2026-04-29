@@ -1,0 +1,61 @@
+:root {
+    --bg-color: #000;
+    --text-color: #0f0;
+    --accent-color: #0ff;
+    --highlight-color: #ff0;
+    --border-color: #0f0;
+}
+
+/* Retro theme specific styles */
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: "W95Fa", "Courier New", monospace;
+}
+
+a {
+    color: var(--border-color);
+}
+a:hover {
+    color: var(--highlight-color);
+}
+
+img {
+    border: 2px solid var(--border-color);
+}
+
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+body::before {
+    content: "Loading...";
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--border-color);
+    font-family: monospace;
+    animation: flicker 2s infinite alternate;
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.neon-link {
+    color: var(--border-color);
+    border-bottom: 1px dotted var(--border-color);
+}
+.neon-link:hover {
+    color: var(--highlight-color);
+}

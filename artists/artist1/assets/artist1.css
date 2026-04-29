@@ -1,0 +1,37 @@
+/* Artist 1 (Jim Osman) Unique Styles - Cyber Pitch */
+.artist-room{
+  background:linear-gradient(45deg,#000 25%,#001 25%,#001 50%,#000 50%,#000 75%,#001 75%);
+  background-size:20px 20px;
+}
+.artist-featured{
+  margin:2rem 0;
+  position:relative;
+}
+.artist-featured img{
+  box-shadow:0 0 20px #0ff;
+  transition:transform .5s;
+}
+.artist-featured img:hover{
+  transform:scale(1.02);
+}
+.artist-featured blockquote{
+  background:rgba(0,255,255,0.2);
+  border-left:4px solid #0ff;
+  padding:.5rem 1rem;
+  margin-top:1rem;
+  font-style:italic;
+}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:1rem;
+  margin:2rem 0;
+}
+.gallery-grid img{
+  width:100%;
+  transition:transform .3s;
+}
+.gallery-grid img:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 15px #0ff;
+}
