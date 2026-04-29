@@ -2,15 +2,20 @@
 
 This is a vanilla HTML/CSS/JS website for the "Accept the Cookies" arts collective. It follows a 90s retro/cybernetic aesthetic and does not use any build tools, package managers, or JS frameworks (no React, no Svelte).
 
+## Critical Rules
+- **NEVER overwrite, replace, or modify user-provided content or artist descriptions** with placeholders. Always preserve the exact copy that currently exists in the HTML files.
+- **Layout Constraints:** The design is intentionally left-aligned with a constrained max-width (e.g., 600px container) against a fixed background image. Do not center everything or change it to full-width card grids.
+- **Background Images:** Global background images should keep their original size (`background-size: auto;`), not repeat (`background-repeat: no-repeat;`), and stay fixed (`background-attachment: fixed;`), with a fallback background color filling the empty space.
+
 ## Architecture & Structure
-- **No Build Step:** The site is served entirely as static HTML/CSS files. To preview, simply open `index.html` in a browser or run a simple local server (e.g., `python3 -m http.server` or `npx serve`).
+- **No Build Step:** The site is served entirely as static HTML/CSS files. To preview, open `index.html` in a browser or run a simple local server (e.g., `python3 -m http.server` or `npx serve`).
 - **Main Entrypoint:** `/index.html` serves as the directory for the different artists.
 - **Artist Rooms:** Each artist has their own dedicated folder under `artists/` (e.g., `artists/jim/index.html`). Artist pages are allowed to have unique HTML layouts and custom CSS files (placed in `artists/<name>/assets/`), but they must still incorporate the global CSS to maintain the core aesthetic.
 - **Shared Assets:** All global fonts, images, and CSS are in `/assets/`.
 
 ## Styling & Conventions
 - **Two-File CSS System:** 
-  - `assets/css/styles.css`: Manages layout, responsive grids, and spacing.
+  - `assets/css/styles.css`: Manages core layout, spacing, and left-aligned constraints.
   - `assets/css/retro-theme.css`: Manages the retro theme specifics (colors, typography, animations like scanlines and flicker).
 - **CSS Variables:** Never hardcode colors. Always use the CSS variables defined in the `:root` of `retro-theme.css`:
   - `--bg-color` (Backgrounds)
