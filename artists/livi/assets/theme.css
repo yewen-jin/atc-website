@@ -320,8 +320,32 @@ body {
   width: 100%;
   border: 3px ridge var(--cloud-border);
   box-shadow: 3px 3px 8px rgba(0, 0, 50, 0.3);
-  margin: var(--sp-6) 0;
+  margin: 0;
   display: block;
+  max-height: 430px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.image-figure {
+  margin: var(--sp-6) 0;
+}
+
+.image-figure figcaption,
+.works-grid figcaption {
+  font-size: var(--fs-3);
+  color: var(--cloud-marquee);
+  font-style: italic;
+  margin-top: var(--sp-2);
+  text-align: center;
+}
+
+.transparent-object .featured-image {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  max-height: 360px;
+  object-fit: contain;
 }
 
 /* Works grid */
@@ -333,8 +357,11 @@ body {
 }
 .works-grid img {
   width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   border: 2px ridge var(--cloud-border);
   box-shadow: 2px 2px 6px rgba(0, 0, 50, 0.3);
+  display: block;
 }
 
 /* Dark teal info panel for other sections */

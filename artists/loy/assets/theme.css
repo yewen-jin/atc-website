@@ -437,8 +437,56 @@ body {
 .project-media .featured-img {
   width: 100%;
   display: block;
+  max-height: 620px;
+  object-fit: contain;
+  background: var(--black);
   filter: saturate(0.6) contrast(1.4) brightness(0.85) hue-rotate(160deg);
   animation: flicker 8s infinite;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--sp-5);
+  margin: var(--sp-8) 0;
+}
+
+.image-grid-wide {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.image-card {
+  position: relative;
+  background: var(--black);
+  border: 1px solid var(--works-border);
+  overflow: hidden;
+}
+
+.image-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: block;
+  object-fit: cover;
+  filter: saturate(0.85) contrast(1.35) brightness(0.82) hue-rotate(155deg);
+  transition: filter .3s, transform .3s;
+}
+
+.image-card:hover img {
+  filter: saturate(1.5) contrast(1.45) brightness(0.92) hue-rotate(175deg);
+  transform: scale(1.035);
+}
+
+.image-card figcaption {
+  position: absolute;
+  left: var(--sp-3);
+  bottom: var(--sp-3);
+  padding: var(--sp-1) var(--sp-3);
+  background: rgba(0, 0, 0, 0.72);
+  color: rgba(170, 255, 0, 0.72);
+  font-size: var(--fs-2);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  pointer-events: none;
 }
 
 .aside-block {
