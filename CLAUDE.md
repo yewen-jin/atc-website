@@ -26,7 +26,10 @@ There are no tests, linters, or formatters configured.
 ## Architecture
 
 - `/index.html` — landing page / artist directory. Uses the global CSS (`assets/css/retro-theme.css` + `assets/css/styles.css`) and the shared retro theme.
-- `/artists/<name>/index.html` — one room per artist. Each room defines its **own complete visual world inline** (its own `<style>` block, fonts, colors, layout). Artist rooms intentionally do not link the global stylesheets — the four artists (Jim, Livi, Loy, Symoné) each have a distinct aesthetic that would clash with the homepage's retro theme. They reference shared font/image assets directly via `../../assets/...`.
+- `/artists/<name>/` — one room per artist (Jim, Livi, Loy, Symoné). Two files:
+  - `index.html` — markup + the section-switching `<script>` only. Links exactly one stylesheet: `<link rel="stylesheet" href="assets/theme.css"/>`.
+  - `assets/theme.css` — the artist's complete self-contained theme. Each defines its own `:root` with three scales: **color** (semantic names per artist — `--acid`/`--pink` for Loy, `--cloud-border`/`--teal-bright` for Livi, etc.), **font-size** (`--fs-1` … `--fs-N`), **spacing** (`--sp-1` … `--sp-N`). Font-faces and asset references go in `theme.css` and reach shared assets via `../../../assets/...`.
+- Artist themes intentionally do not link the homepage stylesheets — the four rooms each have a distinct aesthetic that would clash with the global retro theme.
 - `/assets/` — shared fonts (W95FA, Pixeltype, the CursedGothic family under `cursed_gothic/`), images, JS, and the two-file global CSS system used **only by the homepage**:
   - `styles.css` — layout, spacing, the deliberately left-aligned constrained-width container.
   - `retro-theme.css` — colors, typography, scanline/flicker animations. Defines the `:root` CSS variables (`--bg-color`, `--text-color`, `--accent-color`, `--highlight-color`, `--border-color`).
@@ -35,4 +38,5 @@ There are no tests, linters, or formatters configured.
 
 - **Never overwrite or replace existing artist copy / descriptions** with placeholders. Preserve the exact text in the HTML.
 - **Homepage**: don't centralize the layout or convert it to a full-width grid; don't hardcode colors (use the CSS variables from `retro-theme.css`); keep the background image `auto`/`no-repeat`/`fixed` with a fallback color.
-- **Artist rooms**: don't try to harmonise them with the homepage's retro theme — each room's distinct visual identity is intentional. Section-switching uses a small inline `<script>` that toggles `.active` on nav items and panels; keep that pattern when adding sections.
+- **Artist rooms**: don't reintroduce inline `<style>` blocks or link the homepage stylesheets — each room's styling lives entirely in its `theme.css`. Don't mix raw literals with the var-driven scales: if a value has a `--fs-*` / `--sp-*` / color var, use the var. One-off decorative literals (gradient stops, rgba glow tints) stay inline by design.
+- Section-switching uses a small inline `<script>` that toggles `.active` on nav items and panels; keep that pattern when adding sections.

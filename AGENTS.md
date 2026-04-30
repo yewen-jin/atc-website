@@ -10,8 +10,11 @@ This is a vanilla HTML/CSS/JS website for the "Accept the Cookies" arts collecti
 ## Architecture & Structure
 - **No Build Step:** The site is served entirely as static HTML/CSS files. To preview, open `index.html` in a browser or run a simple local server (e.g., `python3 -m http.server` or `npx serve`).
 - **Main Entrypoint:** `/index.html` serves as the directory for the different artists.
-- **Artist Rooms:** Each artist has their own dedicated folder under `artists/` (e.g., `artists/jim/index.html`). **Each artist room defines its own complete visual world inline** — its own `<style>` block, fonts, colors, and layout. Artist rooms intentionally do **not** link the homepage stylesheets; the four rooms (Jim, Livi, Loy, Symoné) each have a distinct aesthetic that would clash with the global retro theme. Artist rooms may reference shared font/image assets under `/assets/` directly via `../../assets/...`.
-- **Shared Assets:** All global fonts, images, and CSS are in `/assets/`.
+- **Artist Rooms:** Each artist has their own dedicated folder under `artists/<name>/`, containing:
+  - `index.html` — markup only; references its theme via `<link rel="stylesheet" href="assets/theme.css"/>`.
+  - `assets/theme.css` — the artist's complete self-contained theme (colors, fonts, layout, animations). The four rooms (Jim, Livi, Loy, Symoné) each have a distinct visual identity that would clash with the homepage's retro theme, so artist themes intentionally do **not** link the homepage stylesheets.
+  - Per-artist themes reference shared fonts/images under `/assets/` via `../../../assets/...` (three levels up because `theme.css` lives one level deeper than `index.html`).
+- **Shared Assets:** All global fonts, images, and the homepage CSS live under `/assets/`.
 
 ## Styling & Conventions
 
@@ -27,12 +30,16 @@ This is a vanilla HTML/CSS/JS website for the "Accept the Cookies" arts collecti
   - `--border-color` (Borders, links)
 - **Typography:** The homepage uses `'W95Fa', 'Courier New', monospace`.
 
-### Artist rooms — self-contained per-artist aesthetic
-- Each room has its own inline `<style>` block — colors, fonts, decorative elements are scoped to that page and chosen to express that artist's character.
+### Artist rooms — self-contained per-artist theme
+- Each room's full styling lives in `artists/<name>/assets/theme.css`. Don't reintroduce inline `<style>` blocks, and don't link the homepage stylesheets from artist pages.
 - Don't try to "harmonise" rooms with the global theme variables; they are deliberately distinct.
-- Each room loads only the fonts it actually uses via `@font-face` from `../../assets/fonts/...`.
+- Every `theme.css` defines its own `:root` with three scales — color (semantic names like `--acid`, `--cloud-border`, `--video-bg`), font-size (`--fs-1` … `--fs-N`), and spacing (`--sp-1` … `--sp-N`). Reference these vars; don't reintroduce raw hex/rem/px literals for values that already have a var. One-off decorative literals (gradient stops, rgba glow tints) are intentionally left inline — they're bespoke per-element art, not part of the theme scale.
+- The font-size and spacing scales are exhaustive (every distinct value preserved), not minimal. If you tighten the scale during fine-tuning, update every var-referencing rule rather than mixing vars with literals.
 - Section-switching is done with a small inline `<script>` that toggles `.active` on nav items and `.section` panels — keep this pattern when adding new sections.
 
 ## Workflows & Adding Content
-- When adding a new artist, create a directory in `artists/`, give them an `index.html` with its own self-contained `<style>` and visual identity.
+- When adding a new artist:
+  1. Create `artists/<name>/index.html` containing markup and the section-switching script only.
+  2. Create `artists/<name>/assets/theme.css` with `@font-face` declarations, a `:root` block defining color / font-size / spacing scales, and the rest of the room's styles using those vars.
+  3. Add a link to `artists/<name>/index.html` in the homepage's artist list.
 - The project is deployed via standard static hosting (e.g., Vercel or Cloudflare Pages) where the repository root is the publish directory.
