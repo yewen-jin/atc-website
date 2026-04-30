@@ -21,7 +21,7 @@ a:hover {
 }
 
 img {
-    border: 2px solid var(--border-color);
+    border: 0px solid var(--border-color);
 }
 
 .content {
@@ -38,6 +38,11 @@ body::before {
     color: var(--border-color);
     font-family: monospace;
     animation: flicker 2s infinite alternate;
+    z-index: 9999;
+}
+
+body.loaded::before {
+    display: none;
 }
 
 @keyframes flicker {
