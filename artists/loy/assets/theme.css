@@ -30,6 +30,9 @@
   --led-blue: #0044ff;
   --led-blue-glow: #44f;
 
+  /* Layout */
+  --shell-max: 980px;
+
   /* Font size */
   --fs-1: 0.55rem;
   --fs-2: 0.6rem;
@@ -110,7 +113,7 @@ body {
 /* ── CCTV HEADER BAR ── */
 .cctv-bar {
   width: 100%;
-  max-width: 820px;
+  max-width: var(--shell-max);
   background: var(--cctv-bar-bg);
   border: 1px solid var(--cctv-bar-border);
   padding: var(--sp-3) var(--sp-6);
@@ -143,7 +146,7 @@ body {
 /* ── PAGE SHELL ── */
 .page {
   width: 100%;
-  max-width: 820px;
+  max-width: var(--shell-max);
   background: var(--dim);
   border: 2px solid var(--page-border);
   border-top: none;
@@ -255,6 +258,7 @@ body {
 .featured-img {
   width: 100%;
   display: block;
+  cursor: zoom-in;
   filter: saturate(0.6) contrast(1.4) brightness(0.85) hue-rotate(160deg);
   animation: flicker 8s infinite;
 }
@@ -467,6 +471,7 @@ body {
   aspect-ratio: 4 / 3;
   display: block;
   object-fit: cover;
+  cursor: zoom-in;
   filter: saturate(0.85) contrast(1.35) brightness(0.82) hue-rotate(155deg);
   transition: filter .3s, transform .3s;
 }
@@ -570,7 +575,7 @@ blockquote {
 /* ── BOTTOM STATUS BAR ── */
 .status-bar {
   width: 100%;
-  max-width: 820px;
+  max-width: var(--shell-max);
   background: var(--dim);
   border: 1px solid var(--page-border);
   border-top: 1px solid var(--status-border-top);
@@ -599,3 +604,70 @@ blockquote {
   letter-spacing: .06em;
 }
 .back-link:hover { color: var(--acid); }
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-10);
+  background: rgba(0, 0, 0, 0.88);
+}
+
+.image-lightbox.is-open {
+  display: flex;
+}
+
+.lightbox-frame {
+  position: relative;
+  width: min(100%, 1120px);
+  max-height: calc(100vh - 48px);
+  padding: var(--sp-8);
+  background: var(--black);
+  border: 1px solid var(--acid);
+  box-shadow:
+    0 0 18px rgba(170, 255, 0, 0.45),
+    inset 0 0 18px rgba(170, 255, 0, 0.12);
+}
+
+.lightbox-img {
+  display: block;
+  width: 100%;
+  max-height: calc(100vh - 140px);
+  object-fit: contain;
+  background: var(--black);
+}
+
+.lightbox-caption {
+  margin-top: var(--sp-4);
+  color: rgba(170, 255, 0, 0.72);
+  font-size: var(--fs-3);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: var(--sp-3);
+  right: var(--sp-3);
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--pink);
+  background: var(--black);
+  color: var(--pink);
+  font-family: "W95Fa", "Courier New", monospace;
+  font-size: var(--fs-7);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 0, 170, 0.3);
+}
+
+.lightbox-close:hover {
+  background: var(--pink);
+  color: var(--black);
+}
