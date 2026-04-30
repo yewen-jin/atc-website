@@ -1,0 +1,29 @@
+# Wrangler Static Assets ignore file.
+# The assets directory is the repository root, so keep repo/local metadata
+# and source-only files out of the public upload.
+
+.git
+.git/**
+**/.git
+**/.git/**
+
+.wrangler
+.wrangler/**
+node_modules
+node_modules/**
+
+.env*
+.dev.vars*
+.DS_Store
+**/.DS_Store
+._*
+**/._*
+
+.assetsignore
+.gitignore
+wrangler.jsonc
+
+AGENTS.md
+CLAUDE.md
+README.md
+artists/**/content.md
