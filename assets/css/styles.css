@@ -120,7 +120,7 @@ a {
     top: 33%;
     left: 50%;
     z-index: 4;
-    width: min(60%, 880px);
+    width: min(48%, 720px);
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
@@ -176,22 +176,27 @@ a {
 .statement-panel {
     aspect-ratio: 1448 / 1086;
     margin: 0;
-    padding: clamp(60px, 7vw, 110px) clamp(96px, 9vw, 150px);
+    /* Padding as a % of the panel itself (not viewport) so it tracks the
+       frame's chrome inner-safe area at every breakpoint. */
+    padding: 14% 14% 14% 14%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url("../frames/processed/frame-statement.png") center / 100%
+    overflow: hidden;
+    background: url("../frames/processed/frame-statement-alt.png") center / 100%
         100% no-repeat;
 }
 
 .glowing-text {
     position: relative;
     z-index: 1;
-    max-width: 720px;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
     color: var(--text-color);
-    font-size: clamp(1.22rem, 2vw, 1.9rem);
+    /* Sized to fit inside the chrome's inner safe area without overflow. */
+    font-size: clamp(0.86rem, 1.35vw, 1.25rem);
     line-height: 1.38;
+    text-align: center;
     text-shadow: 0 0 8px var(--shadow-color);
 }
 
@@ -240,7 +245,7 @@ a {
 .artist-orb {
     position: relative;
     z-index: 1;
-    width: clamp(170px, 14.8vw, 244px);
+    width: clamp(204px, 17.76vw, 293px);
     aspect-ratio: 1;
     display: flex;
     align-items: center;
@@ -280,7 +285,7 @@ a {
 .artist-orb:hover,
 .artist-orb:focus-visible {
     color: var(--highlight-color);
-    transform: scale(1.05);
+    transform: scale(1.04);
     outline: none;
     filter: drop-shadow(0 0 18px var(--glow-green));
 }
@@ -356,19 +361,32 @@ footer.site-footer {
     }
 }
 
+/* ── Mobile: drop the rectangular chrome frames (which would distort when stretched
+   to portrait shapes) and replace with simple neon-bordered panels. The circular
+   `.artist-orb` keeps its frame-orb image since aspect-ratio:1 is preserved. ── */
 @media (max-width: 980px) {
     .page-container {
         align-items: flex-start;
+        padding: clamp(12px, 3vw, 22px);
     }
 
     .hud-shell {
         min-height: auto;
         aspect-ratio: auto;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto auto auto auto;
-        padding: 28px;
-        border-radius: 28px;
-        gap: 18px;
+        grid-template-rows: auto auto auto auto auto auto;
+        padding: clamp(20px, 4vw, 32px);
+        gap: clamp(14px, 3vw, 22px);
+        background: var(--panel-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 18px;
+        box-shadow:
+            0 0 24px var(--shadow-color),
+            inset 0 0 32px rgba(104, 255, 0, 0.05);
+    }
+
+    .hud-shell::before {
+        display: none;
     }
 
     .title-console {
@@ -378,14 +396,17 @@ footer.site-footer {
         grid-column: 1 / -1;
         grid-row: 1;
         width: 100%;
-        min-height: 160px;
+        aspect-ratio: auto;
+        padding: clamp(18px, 4vw, 28px) clamp(20px, 4vw, 36px);
+        background: transparent;
+        border: 1px solid var(--border-color);
+        border-radius: 14px;
+        box-shadow: 0 0 18px var(--glow-green);
         transform: none;
     }
 
-    .statement-panel {
-        min-height: auto;
-        margin: 0;
-        padding: 58px 64px;
+    .site-logo {
+        width: min(100%, 420px);
     }
 
     .content {
@@ -396,6 +417,20 @@ footer.site-footer {
         grid-row: 2;
         width: 100%;
         transform: none;
+    }
+
+    .statement-panel {
+        aspect-ratio: auto;
+        margin: 0;
+        padding: clamp(20px, 4vw, 32px) clamp(22px, 4.5vw, 36px);
+        background: var(--panel-bg-soft);
+        border: 1px solid var(--accent-color);
+        border-radius: 14px;
+        box-shadow: 0 0 20px var(--glow-blue);
+    }
+
+    .glowing-text {
+        font-size: clamp(0.95rem, 2.6vw, 1.15rem);
     }
 
     .orbit-panel {
@@ -410,36 +445,26 @@ footer.site-footer {
         grid-column: 1;
         grid-row: 3;
     }
-
     .orbit-right.orbit-top {
         grid-column: 2;
         grid-row: 3;
     }
-
     .orbit-left.orbit-bottom {
         grid-column: 1;
         grid-row: 4;
     }
-
     .orbit-right.orbit-bottom {
         grid-column: 2;
         grid-row: 4;
     }
 
-    .orbit-panel::after {
-        display: none;
-    }
-
     .artist-orb {
-        width: 100%;
-        min-height: 150px;
-        aspect-ratio: 1.35;
-        border-radius: 28px;
+        width: clamp(140px, 38vw, 200px);
+        aspect-ratio: 1;
     }
 
-    .artist-orb::before,
-    .artist-orb::after {
-        border-radius: 22px;
+    .artist-orb span {
+        font-size: clamp(0.95rem, 3vw, 1.3rem);
     }
 
     .sigil-strip {
@@ -449,9 +474,23 @@ footer.site-footer {
         grid-column: 1 / -1;
         grid-row: 5;
         width: 100%;
-        max-width: 500px;
+        max-width: 360px;
+        aspect-ratio: auto;
+        padding: 12px 22px;
         justify-self: center;
+        gap: 14px;
+        background: transparent;
+        border: 1px solid var(--border-color);
+        border-radius: 999px;
+        box-shadow: 0 0 16px var(--glow-green);
         transform: none;
+    }
+
+    .sigil-strip span {
+        visibility: visible;
+        color: var(--border-color);
+        font-size: 1.15rem;
+        text-shadow: 0 0 8px var(--glow-green);
     }
 
     footer.site-footer {
@@ -460,21 +499,16 @@ footer.site-footer {
         bottom: auto;
         grid-column: 1 / -1;
         grid-row: 6;
+        margin-top: 4px;
         transform: none;
-        margin-top: 6px;
     }
 }
 
 @media (max-width: 560px) {
-    .page-container {
-        padding: 10px;
-    }
-
     .hud-shell {
         grid-template-columns: 1fr;
-        padding: 18px;
+        padding: 16px;
         gap: 14px;
-        border-radius: 18px;
     }
 
     .title-console,
@@ -491,52 +525,28 @@ footer.site-footer {
     .orbit-left.orbit-top {
         grid-row: 3;
     }
-
     .orbit-right.orbit-top {
         grid-row: 4;
     }
-
     .orbit-left.orbit-bottom {
         grid-row: 5;
     }
-
     .orbit-right.orbit-bottom {
         grid-row: 6;
     }
-
     .sigil-strip {
         grid-row: 7;
     }
-
     footer.site-footer {
         grid-row: 8;
     }
 
-    .title-console,
-    .statement-panel {
-        border-radius: 18px;
-    }
-
-    .title-console {
-        min-height: 120px;
-        padding: 20px 28px;
-    }
-
-    .statement-panel {
-        padding: 44px 34px;
-    }
-
-    .glowing-text {
-        font-size: 1.06rem;
-    }
-
     .artist-orb {
-        min-height: 120px;
+        width: clamp(140px, 60vw, 220px);
     }
 
-    .sigil-strip {
-        min-width: 0;
-        padding: 10px 20px;
-        gap: 10px;
+    .orbit-panel {
+        display: flex;
+        justify-content: center;
     }
 }

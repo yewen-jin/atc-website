@@ -1,140 +1,177 @@
 # Homepage Style Notes
 
-The homepage HUD layout is controlled mainly from `assets/css/styles.css`.
+The homepage HUD layout is controlled mainly from `assets/css/styles.css`. Theme colors, glows, and typography variables live in `assets/css/retro-theme.css`.
 
-## Main Frame
+## Current Structure
+
+`index.html` uses this active hierarchy:
+
+```html
+<div class="page-container">
+  <div class="hud-shell">
+    <div class="orbit-panel ...">...</div>
+    <div class="title-console">...</div>
+    <main class="content">
+      <div class="statement-panel">...</div>
+    </main>
+    <footer class="site-footer">...</footer>
+  </div>
+</div>
+```
+
+The old sigil strip CSS still exists, but the `.sigil-strip` markup is currently commented out.
+
+## Background
+
+```css
+body::before {
+  background-image: url("../img/background.jpg");
+  background-repeat: repeat;
+  background-size: 40%;
+  background-attachment: fixed;
+  background-position: top left;
+  animation: bgFlicker 3s infinite alternate;
+}
+```
+
+- `background-repeat: repeat` spreads the star texture across the viewport.
+- `background-size: 40%` controls how dense/large the repeated texture feels.
+- `bgFlicker` controls the flickering effect.
+- `body::after` is intentionally disabled.
+
+## Main HUD Shell
 
 ```css
 .hud-shell {
-    padding: clamp(86px, 8.4vw, 138px) clamp(34px, 4vw, 66px) clamp(92px, 7.8vw, 142px);
-    grid-template-columns: minmax(160px, 0.82fr) minmax(430px, 720px) minmax(160px, 0.82fr);
-    grid-template-rows: minmax(130px, 0.55fr) minmax(300px, 1.35fr) minmax(120px, 0.55fr) auto;
+  width: min(100%, 1500px);
+  aspect-ratio: 1672 / 941;
+  padding: clamp(86px, 8.4vw, 138px) clamp(34px, 4vw, 66px) clamp(92px, 7.8vw, 142px);
+  grid-template-columns: minmax(160px, 0.82fr) minmax(430px, 720px) minmax(160px, 0.82fr);
+  grid-template-rows: minmax(30px, 0.55fr) minmax(220px, 1.35fr) minmax(90px, 0.55fr) auto;
+  background:
+    linear-gradient(var(--panel-bg), var(--panel-bg)),
+    url("../frames/3aa6ac7c-6644-4e39-a35e-edb2f3d0e2e0.png") center / 100% 100% no-repeat;
 }
 ```
 
-- `padding` controls the inset from the outer chrome frame.
-- `grid-template-columns` controls left orbit area, center content width, and right orbit area.
-- `grid-template-rows` controls vertical zones for top orbits/title, statement area, lower orbits, and sigil strip.
+- `width` sets the maximum desktop HUD size.
+- `aspect-ratio` keeps the full composition close to the reference image.
+- `padding` controls the inner inset from the outer chrome frame.
+- The grid is mostly a sizing scaffold on desktop; the major visible pieces are positioned absolutely.
+- The inner backdrop image is the opaque main-frame image.
 
-## Central Content Group
+The outer chrome frame is applied with:
 
 ```css
-.content {
-    grid-column: 2;
-    grid-row: 2 / 4;
-    justify-content: flex-start;
-    gap: clamp(10px, 1.2vw, 20px);
+.hud-shell::before {
+  background: url("../frames/processed/frame-outer.png") center / 100% 100% no-repeat;
 }
 ```
 
-- `grid-column` places the statement/content stack in the middle column.
-- `grid-row` controls how much `hud-shell` grid space the statement/content stack occupies.
-- The title frame is not inside `.content`; it is its own direct `hud-shell` grid item.
-- `gap` controls spacing inside the content stack.
-
-## Title Frame
+## Title Console
 
 ```css
 .title-console {
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: center;
-    width: min(118%, 880px);
-    min-height: clamp(175px, 18vw, 260px);
-    margin-top: clamp(-6px, -0.3vw, 0px);
-    padding: clamp(26px, 3.8vw, 56px) clamp(52px, 5.4vw, 94px);
+  position: absolute;
+  top: 8.5%;
+  left: 50%;
+  width: min(56%, 820px);
+  aspect-ratio: 2172 / 724;
+  transform: translateX(-50%);
+  background: url("../frames/processed/frame-title.png") center / 100% 100% no-repeat;
 }
 ```
 
-- `grid-column: 2` and `grid-row: 1` place it in the center top row of the `hud-shell` grid.
-- Increase `width` / `min-height` to make the title frame larger.
-- Increase `margin-top` to move it lower.
-- Make `margin-top` more negative to move it higher.
-- `padding` controls logo inset inside the title frame.
+- Increase `top` to move the title lower; decrease it to move the title higher.
+- `left: 50%` plus `translateX(-50%)` keeps it centered.
+- Increase `width` to make the title frame larger.
+- `padding` inside `.title-console` controls the logo inset.
+- `.site-logo` controls the logo image size and glow.
 
-## Statement Frame
+## Statement Panel
 
 ```css
+.content {
+  position: absolute;
+  top: 33%;
+  left: 50%;
+  width: min(48%, 720px);
+  transform: translateX(-50%);
+}
+
 .statement-panel {
-    min-height: clamp(360px, 31vw, 540px);
-    margin: clamp(6px, 0.8vw, 16px) clamp(-64px, -4.2vw, -26px) 0;
-    padding: clamp(80px, 8vw, 126px) clamp(96px, 8.8vw, 148px);
+  aspect-ratio: 1448 / 1086;
+  padding: 14%;
+  background: url("../frames/processed/frame-statement-alt.png") center / 100% 100% no-repeat;
 }
 ```
 
-- `min-height` makes the frame taller or shorter.
-- First `margin` value moves the frame down/up.
-- Negative side margins make the frame wider.
-- `padding` controls text inset inside the frame.
+- Change `.content top` to move the whole statement frame up/down.
+- Change `.content width` to make the whole statement frame wider/narrower.
+- `left: 50%` plus `translateX(-50%)` keeps the statement group centered.
+- `.statement-panel aspect-ratio` should match the current frame asset.
+- `.statement-panel padding` controls where the text sits inside the frame.
+- `.glowing-text` controls the paragraph size, line-height, and text alignment.
 
 ## Artist Orbit Buttons
 
 ```css
 .orbit-panel {
-    transform: translateY(clamp(44px, 5vw, 84px));
+  position: absolute;
 }
-```
 
-- Increase `translateY` to move all orbit buttons lower.
-- Decrease `translateY` to move all orbit buttons higher.
-
-```css
 .orbit-top {
-    grid-row: 2;
+  top: 17.5%;
 }
 
 .orbit-bottom {
-    grid-row: 3;
+  top: 55%;
 }
 
 .orbit-left {
-    grid-column: 1;
+  left: 7.5%;
 }
 
 .orbit-right {
-    grid-column: 3;
+  right: 7.5%;
+}
+
+.artist-orb {
+  width: clamp(204px, 17.76vw, 293px);
+  aspect-ratio: 1;
+  background: url("../frames/processed/frame-orb.png") center / 100% 100% no-repeat;
 }
 ```
 
-- These rules place each orbit into the grid zones.
+- Increase `.orbit-top top` to move Loy/Livi lower; decrease it to move them higher.
+- Increase `.orbit-bottom top` to move Jim/Symone lower; decrease it to move them higher.
+- Adjust `.orbit-left left` and `.orbit-right right` for horizontal spacing.
+- Change `.artist-orb width` to grow/shrink all orbit frames from their center.
 
-## Bottom Sigil Strip
-
-```css
-.sigil-strip {
-    grid-column: 2;
-    grid-row: 4;
-    width: min(100%, 460px);
-}
-```
-
-- `grid-column` and `grid-row` place the sigil strip.
-- `width` controls its size.
-
-## Footer Text
+## Footer
 
 ```css
 footer.site-footer {
-    bottom: clamp(18px, 2.4vw, 42px);
+  bottom: clamp(18px, 2.4vw, 42px);
 }
 ```
 
 - Increase `bottom` to move footer text upward.
 - Decrease `bottom` to move footer text downward.
 
-## Background
+## Mobile Breakpoints
 
-```css
-body::before {
-    background-image: url("../img/background.jpg");
-    background-repeat: repeat;
-    background-size: auto;
-    background-attachment: fixed;
-    background-position: top left;
-    animation: bgFlicker 3s infinite alternate;
-}
-```
+At `max-width: 980px`:
 
-- `background-repeat: repeat` spreads the star texture across the viewport.
-- `background-size: auto` keeps the source asset at its natural size.
-- `bgFlicker` controls the flickering effect.
+- `.hud-shell` becomes a two-column grid.
+- The outer frame overlay is hidden.
+- `.title-console`, `.content`, and `.orbit-panel` become relative grid items.
+- Large raster chrome frames are replaced by bordered neon panels so the layout does not distort.
+
+At `max-width: 560px`:
+
+- The layout stacks into one column.
+- Each orbit gets its own row.
+- The title and statement panels receive tighter padding and smaller minimum heights.
+
+When changing desktop positioning, check these mobile overrides so the artist links do not overlap the title or statement panel.
