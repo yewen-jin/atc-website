@@ -539,6 +539,10 @@ blockquote {
   text-transform: uppercase;
 }
 .back-link {
+  position: fixed;
+  top: var(--sp-5);
+  left: var(--sp-5);
+  z-index: 20;
   font-size: var(--fs-3);
   color: rgba(170, 255, 0, 0.5);
   text-decoration: none;
