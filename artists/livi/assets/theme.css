@@ -384,7 +384,11 @@ body {
 /* ── BACK LINK ── */
 .back-link {
   display: inline-block;
-  margin-top: var(--sp-6);
+  position: fixed;
+  top: var(--sp-5);
+  left: var(--sp-5);
+  z-index: 20;
+  margin-top: 0;
   font-size: var(--fs-3);
   color: var(--teal-mid);
   text-decoration: none;

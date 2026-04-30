@@ -1,9 +1,20 @@
 :root {
     --bg-color: #000;
-    --text-color: #0f0;
-    --accent-color: #0ff;
-    --highlight-color: #ff0;
-    --border-color: #0f0;
+    --text-color: #f2f5f4;
+    --accent-color: #00dcff;
+    --highlight-color: #d6ff00;
+    --border-color: #68ff00;
+    --panel-bg: rgba(0, 0, 0, 0.78);
+    --panel-bg-soft: rgba(10, 18, 16, 0.72);
+    --chrome-light: #f7fbff;
+    --chrome-mid: #8e9798;
+    --chrome-dark: #111715;
+    --glow-green: rgba(104, 255, 0, 0.62);
+    --glow-blue: rgba(0, 220, 255, 0.55);
+    --shadow-color: rgba(0, 0, 0, 0.88);
+    --glass-shine: rgba(255, 255, 255, 0.72);
+    --glass-soft: rgba(255, 255, 255, 0.16);
+    --title-glow: rgba(214, 255, 0, 0.86);
 }
 
 /* Retro theme specific styles */
@@ -21,23 +32,12 @@ a:hover {
 }
 
 img {
-    border: 2px solid var(--border-color);
+    border: 0px solid var(--border-color);
 }
 
 .content {
     max-width: 800px;
     margin: 0 auto;
-}
-
-body::before {
-    content: "Loading...";
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--border-color);
-    font-family: monospace;
-    animation: flicker 2s infinite alternate;
 }
 
 @keyframes flicker {
