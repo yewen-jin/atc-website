@@ -437,13 +437,16 @@ body {
     left: var(--sp-5);
     z-index: 20;
     margin-top: 0;
+    padding: var(--sp-2) var(--sp-4);
+    border-radius: 6px;
+    background: var(--ink);
     font-family: "W95Fa", monospace;
-    font-size: var(--fs-2);
-    color: rgba(0, 0, 0, 0.5);
+    font-size: calc(var(--fs-2) * 2);
+    color: #fff;
     text-decoration: none;
-    border-bottom: 1px dotted rgba(0, 0, 0, 0.4);
-    transition: color 0.2s;
+    transition: background 0.2s, color 0.2s;
 }
 .back-link:hover {
+    background: #fff;
     color: var(--ink);
 }

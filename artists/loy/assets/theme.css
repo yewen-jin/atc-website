@@ -596,14 +596,16 @@ blockquote {
   top: var(--sp-5);
   left: var(--sp-5);
   z-index: 20;
-  font-size: var(--fs-3);
-  color: rgba(170, 255, 0, 0.5);
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: 6px;
+  background: var(--acid);
+  color: var(--black);
+  font-size: calc(var(--fs-3) * 2);
   text-decoration: none;
-  border-bottom: 1px dotted rgba(170, 255, 0, 0.3);
-  transition: color .2s;
   letter-spacing: .06em;
+  transition: background .2s, color .2s;
 }
-.back-link:hover { color: var(--acid); }
+.back-link:hover { background: var(--pink); color: var(--black); }
 
 body.lightbox-open {
   overflow: hidden;
