@@ -87,8 +87,7 @@ a {
     border-radius: 0;
     background:
         linear-gradient(var(--panel-bg), var(--panel-bg)),
-        url("../frames/3aa6ac7c-6644-4e39-a35e-edb2f3d0e2e0.png") center / 100%
-            100% no-repeat;
+        url("../frames/frame-outer-background.png") center / 100% 100% no-repeat;
     box-shadow: 0 0 48px var(--shadow-color);
     overflow: hidden;
 }
@@ -103,8 +102,8 @@ a {
 .hud-shell::before {
     inset: 0;
     z-index: 8;
-    background: url("../frames/processed/frame-outer.png") center / 100% 100%
-        no-repeat;
+    background: url("../frames/processed/frame-outer-with-footer.png") center /
+        100% 100% no-repeat;
 }
 
 .hud-shell::after {
@@ -339,7 +338,7 @@ a {
 footer.site-footer {
     position: absolute;
     left: 50%;
-    bottom: clamp(18px, 1.8vw, 46px);
+    bottom: clamp(18px, 0.5vw, 46px);
     z-index: 9;
     transform: translateX(-50%);
     display: flex;
