@@ -50,7 +50,7 @@ body::before {
   grid-template-rows: minmax(30px, 0.55fr) minmax(220px, 1.35fr) minmax(90px, 0.55fr) auto;
   background:
     linear-gradient(var(--panel-bg), var(--panel-bg)),
-    url("../frames/3aa6ac7c-6644-4e39-a35e-edb2f3d0e2e0.png") center / 100% 100% no-repeat;
+    url("../frames/frame-outer-background.png") center / 100% 100% no-repeat;
 }
 ```
 
@@ -64,7 +64,7 @@ The outer chrome frame is applied with:
 
 ```css
 .hud-shell::before {
-  background: url("../frames/processed/frame-outer.png") center / 100% 100% no-repeat;
+  background: url("../frames/processed/frame-outer-with-footer.png") center / 100% 100% no-repeat;
 }
 ```
 
@@ -118,7 +118,7 @@ The outer chrome frame is applied with:
 
 ## About Page (`/about`)
 
-Lives at `about/index.html`. It shares the same two CSS files and the full HUD shell (star field background, inner backdrop, `frame-outer.png` chrome overlay, `frame-title.png` title console). Differences from the homepage:
+Lives at `about/index.html`. It shares the same two CSS files and the full HUD shell (star field background, inner backdrop, `frame-outer-with-footer.png` chrome overlay, `frame-title.png` title console). Differences from the homepage:
 
 - No `.orbit-panel` artist links.
 - A wider, taller content area overridden via an inline `<style>` block in the HTML (`.content top: 28%`, `width: min(58%, 860px)`; `.statement-panel aspect-ratio: auto; padding: 8% 12%`).
