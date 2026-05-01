@@ -73,7 +73,7 @@ The outer chrome frame is applied with:
 ```css
 .title-console {
   position: absolute;
-  top: 8.5%;
+  top: 6.1%;
   left: 50%;
   width: min(56%, 820px);
   aspect-ratio: 2172 / 724;
@@ -87,13 +87,15 @@ The outer chrome frame is applied with:
 - Increase `width` to make the title frame larger.
 - `padding` inside `.title-console` controls the logo inset.
 - `.site-logo` controls the logo image size and glow.
+- `.site-logo transform: translateY(...)` shifts the logo vertically within the title frame without moving the frame-title.png background. Negative values move it up.
+- The logo is wrapped in `<a href="/about">` — clicking the logo navigates to the about page.
 
 ## Statement Panel
 
 ```css
 .content {
   position: absolute;
-  top: 33%;
+  top: 28.6%;
   left: 50%;
   width: min(48%, 720px);
   transform: translateX(-50%);
@@ -112,6 +114,16 @@ The outer chrome frame is applied with:
 - `.statement-panel aspect-ratio` should match the current frame asset.
 - `.statement-panel padding` controls where the text sits inside the frame.
 - `.glowing-text` controls the paragraph size, line-height, and text alignment.
+- The statement panel is wrapped in `<a href="/about" class="statement-link">` — clicking it navigates to the about page. `.statement-link` is `display: block; width: 100%` so it does not affect the flex layout of `.content`.
+
+## About Page (`/about`)
+
+Lives at `about/index.html`. It shares the same two CSS files and the full HUD shell (star field background, inner backdrop, `frame-outer.png` chrome overlay, `frame-title.png` title console). Differences from the homepage:
+
+- No `.orbit-panel` artist links.
+- A wider, taller content area overridden via an inline `<style>` block in the HTML (`.content top: 28%`, `width: min(58%, 860px)`; `.statement-panel aspect-ratio: auto; padding: 8% 12%`).
+- The title-console logo links back to `/` (homepage) instead of `/about`.
+- Asset paths use `../assets/...` (one level up from `about/`).
 
 ## Artist Orbit Buttons
 
