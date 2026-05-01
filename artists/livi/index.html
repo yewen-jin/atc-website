@@ -12,15 +12,15 @@
   <div class="page">
     <div class="livi-console">
       <nav class="pill-nav" aria-label="Livi page navigation">
-        <button class="pill-btn pill-gallery active" data-target="gallery">Gallery</button>
-        <button class="pill-btn pill-tablet" data-target="tablet">Tablet</button>
+        <button class="pill-btn pill-gallery" data-target="gallery">Gallery</button>
+        <button class="pill-btn pill-tablet active" data-target="tablet">Tablet</button>
         <button class="pill-btn pill-about" data-target="about">About</button>
       </nav>
 
-      <h1 class="console-title">Gallery</h1>
+      <h1 class="console-title">Tablet</h1>
 
       <main class="content-area">
-        <section class="section gallery-section active" id="section-gallery">
+        <section class="section gallery-section" id="section-gallery">
           <h1 class="panel-title">Gallery</h1>
           <div class="slideshow">
             <button class="slide-control slide-control-prev" type="button" data-slide-step="-1" aria-label="Previous image"></button>
@@ -36,31 +36,36 @@
               <button class="thumb-btn" data-slide="1" aria-label="Show audience interaction">
                 <img src="assets/img/©SophieMarieLouise_1.jpg" alt="" loading="lazy" decoding="async"/>
               </button>
-              <button class="thumb-btn" data-slide="2" aria-label="Show interface object">
-                <img src="assets/img/tablet2.png" alt="" loading="lazy" decoding="async"/>
-              </button>
-              <button class="thumb-btn" data-slide="3" aria-label="Show installation view">
+              <button class="thumb-btn" data-slide="2" aria-label="Show installation view">
                 <img src="assets/img/installation_01.jpg" alt="" loading="lazy" decoding="async"/>
               </button>
-              <button class="thumb-btn" data-slide="4" aria-label="Show installation object">
-                <img src="assets/img/installation_02_nobg.png" alt="" loading="lazy" decoding="async"/>
+              <button class="thumb-btn" data-slide="3" aria-label="Show installation object">
+                <img src="assets/img/installation_02.jpg" alt="" loading="lazy" decoding="async"/>
               </button>
-              <button class="thumb-btn" data-slide="5" aria-label="Show installation detail">
+              <button class="thumb-btn" data-slide="4" aria-label="Show installation detail">
                 <img src="assets/img/installation_03.jpg" alt="" loading="lazy" decoding="async"/>
               </button>
             </div>
           </div>
         </section>
 
-        <section class="section tablet-section" id="section-tablet">
+        <section class="section tablet-section active" id="section-tablet">
           <h1 class="panel-title">Tablet</h1>
           <div class="text-panel">
             <figure class="image-figure transparent-object">
               <img class="featured-image" src="assets/img/tablet1.png" alt="Tablet training tool interface character" loading="lazy" decoding="async"/>
               <figcaption>Tablet // training tool</figcaption>
             </figure>
+            <figure class="image-figure transparent-object">
+              <img class="featured-image" src="assets/img/tablet2.png" alt="Tablet training tool interface variation" loading="lazy" decoding="async"/>
+              <figcaption>interface object</figcaption>
+            </figure>
             <p>Tablet is a playful interactive guided meditation exploring the importance of personal and online archives. Users are prompted to press buttons, match puzzles and hold the hand of a specialised "training tool" built to guide modern web users through confronting anxieties stemming from the centralised web and reframing what the internet can be with community sharing at the forefront, with practical tools and tasks to take away at the end.</p>
             <p>Tested at the Studio/Lab Fact Winter Social in December 2025, audiences shared that they found the piece emotive and thought provoking.</p>
+            <figure class="image-figure transparent-object installation-view">
+              <img class="featured-image" src="assets/img/installation_01_nobg.png" alt="Transparent cutout of Tablet installation view" loading="lazy" decoding="async"/>
+              <figcaption>installation view</figcaption>
+            </figure>
             <blockquote>"This piece has shown me to to treasure and love what I have captured and created"</blockquote>
             <blockquote>"I liked being prompted to meditate on what the internet could be in the future. What would a liberatory internet look like, and can we have it?"</blockquote>
           </div>
@@ -84,6 +89,12 @@
 
   </div>
 
+  <div class="lightbox" hidden>
+    <button class="lightbox-close" type="button" aria-label="Close enlarged image">×</button>
+    <img class="lightbox-image" src="assets/img/©SophieMarieLouise.jpg" alt=""/>
+    <p class="lightbox-caption"></p>
+  </div>
+
   <script>
     const slides = [
       {
@@ -97,18 +108,13 @@
         caption: 'audience interaction'
       },
       {
-        src: 'assets/img/tablet2.png',
-        alt: 'Tablet training tool interface variation',
-        caption: 'interface object'
-      },
-      {
         src: 'assets/img/installation_01.jpg',
         alt: 'Tablet installation view',
         caption: 'installation view'
       },
       {
-        src: 'assets/img/installation_02_nobg.png',
-        alt: 'Transparent cutout of Tablet installation object',
+        src: 'assets/img/installation_02.jpg',
+        alt: 'Tablet installation object',
         caption: 'installation object'
       },
       {
@@ -152,9 +158,35 @@
     });
 
     document.addEventListener('keydown', event => {
+      const lightbox = document.querySelector('.lightbox');
+      if (!lightbox.hidden && event.key === 'Escape') {
+        lightbox.hidden = true;
+        return;
+      }
+      if (!lightbox.hidden) return;
       if (!document.getElementById('section-gallery').classList.contains('active')) return;
       if (event.key === 'ArrowLeft') showSlide(currentSlide - 1);
       if (event.key === 'ArrowRight') showSlide(currentSlide + 1);
+    });
+
+    document.querySelector('.slide-image').addEventListener('click', () => {
+      const slide = slides[currentSlide];
+      const lightbox = document.querySelector('.lightbox');
+      const image = document.querySelector('.lightbox-image');
+      image.src = slide.src;
+      image.alt = slide.alt;
+      document.querySelector('.lightbox-caption').textContent = slide.caption;
+      lightbox.hidden = false;
+    });
+
+    document.querySelector('.lightbox-close').addEventListener('click', () => {
+      document.querySelector('.lightbox').hidden = true;
+    });
+
+    document.querySelector('.lightbox').addEventListener('click', event => {
+      if (event.target.classList.contains('lightbox')) {
+        event.currentTarget.hidden = true;
+      }
     });
   </script>
 </body>
