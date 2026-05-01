@@ -209,7 +209,7 @@ blockquote {
   margin: var(--sp-6) 0;
   font-style: italic;
   color: var(--mid);
-  font-size: var(--fs-9);
+  font-size: calc(var(--fs-9) * 1.5);
 }
 
 /* ── BIO (terminal-style) ── */
@@ -229,7 +229,7 @@ blockquote {
   padding-bottom: var(--sp-3);
 }
 .terminal-line {
-  font-size: var(--fs-8);
+  font-size: calc(var(--fs-8) * 1.5);
   color: var(--white);
   line-height: 1.7;
   margin-bottom: var(--sp-1);
@@ -267,7 +267,7 @@ blockquote {
 
 /* ── TEXT BLOCK ── */
 .text-block {
-  font-size: var(--fs-9);
+  font-size: calc(var(--fs-9) * 1.5);
   color: var(--mid);
   line-height: 1.7;
   max-width: 560px;
@@ -297,14 +297,16 @@ blockquote {
   top: var(--sp-5);
   left: var(--sp-5);
   z-index: 20;
-  font-size: var(--fs-3);
-  color: var(--dim);
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--ink);
+  font-size: calc(var(--fs-3) * 2);
   text-decoration: none;
-  border-bottom: 1px dotted var(--dim);
-  transition: color .2s, border-color .2s;
   letter-spacing: .06em;
+  transition: background .2s, color .2s;
 }
-.back-link:hover { color: var(--white); border-color: var(--white); }
+.back-link:hover { background: var(--mid); color: var(--ink); }
 
 /* ── 8-BIT ASCII ART DECORATION ── */
 .ascii-art {

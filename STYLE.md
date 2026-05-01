@@ -120,10 +120,48 @@ The outer chrome frame is applied with:
 
 Lives at `about/index.html`. It shares the same two CSS files and the full HUD shell (star field background, inner backdrop, `frame-outer-with-footer.png` chrome overlay, `frame-title.png` title console). Differences from the homepage:
 
-- No `.orbit-panel` artist links.
-- A wider, taller content area overridden via an inline `<style>` block in the HTML (`.content top: 28%`, `width: min(58%, 860px)`; `.statement-panel aspect-ratio: auto; padding: 8% 12%`).
+- No `.orbit-panel` artist links except the home orb.
+- The center credits still use the shared `.content` and `.statement-panel` frame.
 - The title-console logo links back to `/` (homepage) instead of `/about`.
 - Asset paths use `../assets/...` (one level up from `about/`).
+
+Additional about-only text frames are added in `about/index.html`:
+
+```html
+<section class="about-frame-panel about-frame-panel-secondary">
+  <div id="new-text-area-2" class="about-frame-content"></div>
+</section>
+
+<section class="about-frame-panel about-frame-panel-primary">
+  <div id="new-text-area" class="about-frame-content"></div>
+</section>
+```
+
+Their desktop size and position are controlled in `assets/css/styles.css`:
+
+```css
+.about-frame-panel-primary {
+  top: 30.8%;
+  right: 4.4%;
+  width: min(23.5%, 370px);
+  aspect-ratio: 971 / 1619;
+}
+
+.about-frame-panel-secondary {
+  top: 30.8%;
+  left: 5.2%;
+  width: min(23%, 360px);
+  aspect-ratio: 1;
+}
+```
+
+- Increase `width` to make a frame larger; decrease it to make it smaller.
+- The percentage part scales with the HUD shell. The pixel value is the desktop maximum cap.
+- For example, `width: min(26%, 410px)` makes the frame larger than `width: min(23%, 360px)`.
+- Change `top` to move a frame up/down.
+- Change `left` on `.about-frame-panel-secondary` to move the small left frame horizontally.
+- Change `right` on `.about-frame-panel-primary` to move the tall right frame horizontally.
+- Keep each frame's `aspect-ratio` matching its image asset unless the frame image itself changes.
 
 ## Artist Orbit Buttons
 

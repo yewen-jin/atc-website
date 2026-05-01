@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>02. Going Underground — Loy — Accept the Cookies</title>
+  <link rel="stylesheet" href="../../assets/theme.css"/>
+</head>
+<body>
+  <a href="../../index.html" class="back-link">← Loy</a>
+
+  <div class="cctv-bar">
+    <span class="cctv-label"><span class="rec-dot"></span> REC &nbsp;·&nbsp; CAM_04 &nbsp;·&nbsp; GOING UNDERGROUND</span>
+    <div class="leds">
+      <div class="led blue-led"></div>
+      <div class="led"></div>
+      <div class="led" style="animation-delay:.3s"></div>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="scanline"></div>
+    <div class="project-page">
+      <h2 class="project-title">02. Going Underground</h2>
+      <p class="project-question">Does 'technology' need to be plugged in or battery powered?</p>
+      <div class="featured-panel project-media">
+        <img class="featured-img" src="../../assets/2. Going Underground/C10EDF0F-0D32-4351-9962-773211AF8891.JPEG" alt="CCTV security system sign from Going Underground research" loading="eager" decoding="async"/>
+        <span class="cctv-stamp-tr">CAM_04 // UNDERGROUND</span>
+        <span class="cctv-stamp"><span class="rec-dot"></span> ARCHIVE // 02</span>
+      </div>
+      <div class="text-block">
+        <p>Imagination is powerful. The team had been talking on the group chat about technology. I was having floods of dreams. Too much to describe here.</p>
+        <p>Conversations came through our group chat about what counts as 'technology'. Like others on the team, I was looking at old tech, 'low' tech, woke tech, blue tech.</p>
+        <p>What about no-tech? Could it be possible to make an interactive art piece that relies on the player's imagination?</p>
+        <p>I took these thoughts into other autonomous spaces and started drawing hand-activated 'portals' on walls. This period of development was raw and real.</p>
+        <p>I saw a daimon come from one of these portals. No I wasn't on drugs. She was painted by multiple hands that came in after me. The room thrummed with the feeling of being alive. It's like she knew she had permission to come out. She was feminine and fierce.</p>
+        <p>When I say 'daimon' I mean spirit. Not a bad spirit. But a powerful one. The work had started to take on an esoteric flavour. What if technology could house spirit? And what if it couldn't?</p>
+        <p>Memories of this time… sleeping on the dust-covered floor with people I didn't yet know. Collective noise-making with punks, rappers, electronic musicians, and other DIY artists. The determination to resist dystopia. Queer carnage. Yells of Viva Palestina. Boxing. Soundsystems. Ghosts from the past. Artworks shared via USB. Throwing dildos at billboard prints of billionaires. Play.</p>
+        <p>Most images of this work are lost or redacted. (Back up your phones ppl).</p>
+        <p>I guess you'll have to use your imagination.</p>
+      </div>
+      <div class="image-grid">
+        <figure class="image-card">
+          <img src="../../assets/2. Going Underground/A4961D17-3573-4523-89DE-C4465C179016.JPEG" alt="Going Underground research image" loading="lazy" decoding="async"/>
+          <figcaption>// portal trace</figcaption>
+        </figure>
+        <figure class="image-card">
+          <img src="../../assets/2. Going Underground/PHOTO-2026-04-27-08-44-08.jpg" alt="Going Underground documentation image" loading="lazy" decoding="async"/>
+          <figcaption>// field memory</figcaption>
+        </figure>
+      </div>
+      <aside class="aside-block">
+        <div class="panel-label">// 2b. above ground research.</div>
+        <p>What do others think?</p>
+        <p>Above ground, I explored. An ongoing exploration, workshops and meetings with Artists Alliance, Identity 2.0, Shape Arts, Cyberdelic Nexus, Accept The Cookies residency.</p>
+        <p>Journalling. Jugaad. I hadn't realised this has been a lot of my creative career. The idea that if your sandal breaks, you tie it around your foot with a shoelace.</p>
+      </aside>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <span class="status-text">accept-the-cookies.net // loy // going underground</span>
+  </div>
+
+  <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
+    <div class="lightbox-frame" role="dialog" aria-modal="true" aria-label="Expanded image">
+      <button class="lightbox-close" type="button" aria-label="Close expanded image">X</button>
+      <img class="lightbox-img" src="" alt=""/>
+      <p class="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImg = lightbox.querySelector('.lightbox-img');
+    const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+    const lightboxClose = lightbox.querySelector('.lightbox-close');
+
+    const openLightbox = (img) => {
+      lightboxImg.src = img.currentSrc || img.src;
+      lightboxImg.alt = img.alt || '';
+      lightboxCaption.textContent = img.alt || '';
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lightbox-open');
+      lightboxClose.focus();
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('lightbox-open');
+      lightboxImg.removeAttribute('src');
+    };
+
+    document.querySelectorAll('.project-media img, .image-grid img').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img));
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (event) => { if (event.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    });
+  </script>
+</body>
+</html>
