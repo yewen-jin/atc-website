@@ -187,3 +187,86 @@ At `max-width: 560px`:
 - The title and statement panels receive tighter padding and smaller minimum heights.
 
 When changing desktop positioning, check these mobile overrides so the artist links do not overlap the title or statement panel.
+
+## Livi Page
+
+Livi's room lives at `artists/livi/index.html` with styling in `artists/livi/assets/theme.css`. It is independent from the homepage HUD CSS.
+
+Desktop structure:
+
+```html
+<div class="page">
+  <div class="livi-console">
+    <nav class="pill-nav">...</nav>
+    <h1 class="console-title">Gallery</h1>
+    <main class="content-area">...</main>
+  </div>
+</div>
+```
+
+Frame and layering:
+
+```css
+body {
+  background: var(--page-bg) url("frames/background.png") center / cover fixed no-repeat;
+}
+
+.livi-console {
+  width: min(100%, 1500px);
+  aspect-ratio: 1672 / 941;
+}
+
+.livi-console::after {
+  z-index: 3;
+  background: url("frames/frame.png") center / contain no-repeat;
+  pointer-events: none;
+}
+
+.content-area {
+  top: 15.2%;
+  right: 7.2%;
+  bottom: 9.8%;
+  left: 18.4%;
+  z-index: 2;
+}
+
+.pill-nav,
+.console-title {
+  z-index: 5;
+}
+```
+
+- `frame.png` is the visible chrome and must stay above the content fill.
+- `.text-panel` and `.slideshow` use `--panel-glass` as the inner fill; this fill should remain below the chrome overlay.
+- `.console-title` is the desktop title on the top frame. It is updated by the inline script when changing sections.
+- The per-section `.panel-title` elements are hidden on desktop and shown in the mobile layout where the chrome frame is removed.
+
+Livi nav button placement:
+
+```css
+.pill-gallery { top: 31.8%; left: 7.65%; }
+.pill-tablet { top: 51.5%; left: 7.65%; }
+.pill-about { top: 70.7%; left: 7.65%; }
+
+.pill-btn {
+  width: 14.6%;
+  transform: translate(-50%, -50%);
+}
+```
+
+- These percentages align the three button images to the three left-panel holes in `frame.png`.
+- The button images are `button-1.png`, `button-2.png`, and `button-3.png`.
+- Adjust `top` values for vertical alignment, `left` for horizontal alignment, and `width` for fit within the circular openings.
+
+Livi gallery:
+
+- The Gallery uses CSS-only thumbnail outlines at the bottom; do not reintroduce `slide-show-thumbnail.png` for the thumbnail rail unless explicitly requested.
+- The main image area is CSS-styled; do not reintroduce `slide-show-frame.png` unless explicitly requested.
+- Previous/next controls use `frames/left.png` and `frames/right.png`.
+- Thumbnail buttons use `data-slide`, controls use `data-slide-step`, and keyboard ArrowLeft/ArrowRight navigation is handled in the inline script.
+- Keep all gallery navigation routed through `showSlide()` so the main image, caption, and active thumbnail remain synchronized.
+
+Livi mobile:
+
+- At `max-width: 980px`, `.livi-console::after` and `.console-title` are hidden, `.pill-nav` becomes a three-column grid, and `.content-area` becomes a regular rounded panel.
+- At `max-width: 560px`, thumbnails switch to three columns.
