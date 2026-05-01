@@ -117,7 +117,7 @@ a {
 
 .content {
     position: absolute;
-    top: 33%;
+    top: 28.6%;
     left: 50%;
     z-index: 4;
     width: min(48%, 720px);
@@ -145,7 +145,7 @@ a {
 
 .title-console {
     position: absolute;
-    top: 8.5%;
+    top: 4.1%;
     left: 50%;
     z-index: 4;
     width: min(56%, 820px);
@@ -169,8 +169,31 @@ a {
 
 .site-logo {
     width: min(100%, 650px);
+    transform: translateY(-12%);
     filter: drop-shadow(0 0 8px var(--title-glow))
         drop-shadow(0 0 18px var(--glow-green));
+}
+
+.title-console a {
+    display: flex;
+    line-height: 0;
+}
+
+.title-console a:hover .site-logo {
+    opacity: 0.82;
+    transition: opacity 0.15s;
+}
+
+.statement-link {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.statement-link:hover .statement-panel {
+    opacity: 0.88;
+    transition: opacity 0.15s;
 }
 
 .statement-panel {
