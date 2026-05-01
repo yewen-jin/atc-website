@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>09. Seraphim — Loy — Accept the Cookies</title>
+  <link rel="stylesheet" href="../../assets/theme.css"/>
+</head>
+<body>
+  <a href="../../index.html" class="back-link">← Loy</a>
+
+  <div class="cctv-bar">
+    <span class="cctv-label"><span class="rec-dot"></span> REC &nbsp;·&nbsp; CAM_04 &nbsp;·&nbsp; SERAPHIM</span>
+    <div class="leds">
+      <div class="led blue-led"></div>
+      <div class="led"></div>
+      <div class="led" style="animation-delay:.3s"></div>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="scanline"></div>
+    <div class="project-page">
+      <h2 class="project-title">09. Seraphim</h2>
+      <div class="featured-panel project-media">
+        <img class="featured-img" src="../../assets/8. Seraphim/F59A6D03-A487-4AA6-984D-D981CA7B0622.JPEG" alt="Seraphim cube sculpture and projection documentation" loading="eager" decoding="async"/>
+        <span class="cctv-stamp-tr">CAM_04 // SERAPHIM</span>
+        <span class="cctv-stamp"><span class="rec-dot"></span> ARCHIVE // 09</span>
+      </div>
+      <div class="text-block">
+        <p>Concept by Manaal Asim (link) - Manaal built on Blender. Creative discussions. Manaal built a cube Seraphim.</p>
+        <p>We spent time devising a concept, Manaal went and built, and I created video outputs on TouchDesigner, ready for interactive installations.</p>
+        <p>This work follows a concept set in the backrooms, where angels process code faster than any human. Biblically accurate angels in the BTS of the internet, being able to conceptualise code that would fill a whole room.</p>
+        <p>As humans, processing information one chunk at a time while scrolling. Seeing a tiny fragment of what is online at a time. Social media as a bombardment of energy. The interface - a tiny fragment of what's online.</p>
+        <p>A seraphim brought to life through a series of cubes on Blender, which I then took screen recordings into TouchDesigner and also dropped into Unreal Engine.</p>
+        <p>Creating art beyond the senses and beyond our comprehension. So much coming from so many places. Tailoring the feed because it would be so overwhelming otherwise.</p>
+        <p>The angel knows all, shows all, and will not do that in front of you. Like accepting the cookies, putting self into a massive database. The thing you can't comprehend. Even a little (Krsna true form).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <span class="status-text">accept-the-cookies.net // loy // seraphim</span>
+  </div>
+
+  <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
+    <div class="lightbox-frame" role="dialog" aria-modal="true" aria-label="Expanded image">
+      <button class="lightbox-close" type="button" aria-label="Close expanded image">X</button>
+      <img class="lightbox-img" src="" alt=""/>
+      <p class="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImg = lightbox.querySelector('.lightbox-img');
+    const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+    const lightboxClose = lightbox.querySelector('.lightbox-close');
+
+    const openLightbox = (img) => {
+      lightboxImg.src = img.currentSrc || img.src;
+      lightboxImg.alt = img.alt || '';
+      lightboxCaption.textContent = img.alt || '';
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lightbox-open');
+      lightboxClose.focus();
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('lightbox-open');
+      lightboxImg.removeAttribute('src');
+    };
+
+    document.querySelectorAll('.project-media img, .image-grid img').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img));
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (event) => { if (event.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    });
+  </script>
+</body>
+</html>
