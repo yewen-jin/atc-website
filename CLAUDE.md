@@ -42,9 +42,9 @@ git diff --check
   - `styles.css` — HUD layout, frame placement, responsive behavior, background layers, and spacing.
   - `retro-theme.css` — colors, typography, scanline/flicker animations, and chrome/glow variables. Defines the `:root` CSS variables (`--bg-color`, `--text-color`, `--accent-color`, `--highlight-color`, `--border-color`, `--panel-bg`, `--panel-bg-soft`, `--glow-green`, `--glow-blue`, `--shadow-color`, etc.).
 - `/assets/frames/` — source frame images and processed chrome overlays:
-  - Source UUID files are preserved.
+  - Source files are the cleaned frame PNGs (`frame-title.png`, `frame-outer.png`, `frame-footer.png`, etc.).
   - Transparent web-ready overlays live in `/assets/frames/processed/`.
-  - The homepage currently uses `frame-outer.png`, `frame-title.png`, `frame-statement-alt.png`, `frame-orb.png`, and the opaque `3aa6ac7c-6644-4e39-a35e-edb2f3d0e2e0.png` inner backdrop.
+  - The homepage currently uses `frame-outer-background.png` as the opaque inner backdrop, `processed/frame-outer-with-footer.png` as the combined outer/footer chrome overlay, plus `frame-title.png`, `frame-statement-alt.png`, and `frame-orb.png`.
 - `.assetsignore` — keeps Cloudflare from uploading `.git`, local tooling files, and other non-site assets when the repo root is served as static assets.
 
 ## Hard Rules (from AGENTS.md)
