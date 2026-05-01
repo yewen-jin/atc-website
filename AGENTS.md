@@ -7,6 +7,7 @@ This is a vanilla HTML/CSS/JS website for the "Accept the Cookies" arts collecti
 - **Homepage Layout:** The homepage is a centered chrome/HUD composition built from frame image assets. Do not convert it to a generic landing page, card grid, or simple centered text layout. Keep the orb links, title console, statement panel, outer frame, and footer aligned inside `.hud-shell`.
 - **Homepage Background:** The current homepage intentionally uses a repeated, fixed, flickering star background in `body::before`. Do not restore the older no-repeat background behavior unless explicitly asked.
 - **Frame Assets:** Source frame images live in `assets/frames/`; web-ready transparent overlays live in `assets/frames/processed/`. Rebuild processed overlays from the cleaned source files when frame assets change. The homepage shell uses `frame-outer-background.png` as the opaque inner backdrop and `processed/frame-outer-with-footer.png` as the combined outer/footer chrome overlay.
+- **Image Manipulation:** When editing or compositing image assets, create a new output file unless the user explicitly asks to overwrite the original. Do not destructively modify user-supplied source images.
 - **Deploy Safety:** The repository root is the publish directory. Keep `.assetsignore` in place so Cloudflare does not upload `.git`, local tooling files, or other non-site assets.
 
 ## Architecture & Structure
@@ -19,6 +20,7 @@ This is a vanilla HTML/CSS/JS website for the "Accept the Cookies" arts collecti
   - `assets/theme.css` — the artist's complete self-contained theme (colors, fonts, layout, animations). The four rooms (Jim, Livi, Loy, Symoné) each have a distinct visual identity that would clash with the homepage's retro theme, so artist themes intentionally do **not** link the homepage stylesheets.
   - Per-artist themes reference shared fonts/images under `/assets/` via `../../../assets/...` (three levels up because `theme.css` lives one level deeper than `index.html`).
 - **Shared Assets:** All global fonts, images, homepage CSS, and frame assets live under `/assets/`.
+- **Livi Room:** `artists/livi/` has its own frame-based layout. The desktop page uses `artists/livi/assets/frames/background.png` as the page background and `artists/livi/assets/frames/frame.png` as a non-interactive chrome overlay on `.livi-console::after`. The three nav buttons (`Gallery`, `Tablet`, `About`) are absolutely positioned inside the left frame holes using `button-1.png`, `button-2.png`, and `button-3.png`. The content fill sits below the chrome via z-index, and `.console-title` sits above the frame at the top. The Gallery uses CSS thumbnails and `left.png` / `right.png` image controls, with keyboard ArrowLeft/ArrowRight support in the inline script.
 
 ## Styling & Conventions
 
@@ -43,6 +45,7 @@ This is a vanilla HTML/CSS/JS website for the "Accept the Cookies" arts collecti
 - Every `theme.css` defines its own `:root` with three scales — color (semantic names like `--acid`, `--cloud-border`, `--video-bg`), font-size (`--fs-1` … `--fs-N`), and spacing (`--sp-1` … `--sp-N`). Reference these vars; don't reintroduce raw hex/rem/px literals for values that already have a var. One-off decorative literals (gradient stops, rgba glow tints) are intentionally left inline — they're bespoke per-element art, not part of the theme scale.
 - The font-size and spacing scales are exhaustive (every distinct value preserved), not minimal. If you tighten the scale during fine-tuning, update every var-referencing rule rather than mixing vars with literals.
 - Section-switching is done with a small inline `<script>` that toggles `.active` on nav items and `.section` panels — keep this pattern when adding new sections.
+- Livi's gallery script additionally maintains `currentSlide`; keep thumbnails, `data-slide-step` controls, and keyboard arrows routed through the same `showSlide()` function so the active thumbnail and caption stay synchronized.
 
 ## Workflows & Adding Content
 - When adding a new artist:
