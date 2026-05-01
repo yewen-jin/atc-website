@@ -7,19 +7,12 @@
         <link rel="stylesheet" href="../assets/css/retro-theme.css" />
         <link rel="stylesheet" href="../assets/css/styles.css" />
         <style>
-            /* About page: wider, taller content area — no orbit panels */
-            .content {
-                top: 28%;
-                width: min(58%, 860px);
-            }
-            .statement-panel {
-                aspect-ratio: auto;
-                min-height: 44%;
-                padding: 8% 12%;
-                align-items: flex-start;
-            }
-            .glowing-text {
-                text-align: left;
+            @media (max-width: 980px) {
+                .orbit-left.orbit-bottom {
+                    grid-column: 1 / -1;
+                    grid-row: 3;
+                    justify-content: center;
+                }
             }
         </style>
     </head>
@@ -38,6 +31,12 @@
                             src="../assets/logo/ATC Logo (Font_ Dream Avenue).png"
                             alt="Accept the Cookies — back to home"
                         />
+                    </a>
+                </div>
+
+                <div class="orbit-panel orbit-left orbit-bottom">
+                    <a class="artist-orb" href="/">
+                        <span>← home</span>
                     </a>
                 </div>
 

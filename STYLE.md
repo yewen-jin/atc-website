@@ -95,7 +95,7 @@ The outer chrome frame is applied with:
 ```css
 .content {
   position: absolute;
-  top: 30.6%;
+  top: 28.6%;
   left: 50%;
   width: min(48%, 720px);
   transform: translateX(-50%);

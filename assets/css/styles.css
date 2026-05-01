@@ -197,6 +197,7 @@ a {
 }
 
 .statement-panel {
+    width: 100%;
     aspect-ratio: 1448 / 1086;
     margin: 0;
     /* Padding as a % of the panel itself (not viewport) so it tracks the
@@ -216,9 +217,10 @@ a {
     width: 100%;
     margin: 0;
     color: var(--text-color);
-    /* Sized to fit inside the chrome's inner safe area without overflow. */
-    font-size: clamp(0.86rem, 1.35vw, 1.25rem);
-    line-height: 1.38;
+    /* Keeps the full-size text intact, then scales it down with the HUD. */
+    font-size: clamp(0.85rem, 1.65vw, 1.56rem);
+    transform: translateY(-10%);
+    line-height: clamp(1.25, 1.8vw, 1.38);
     text-align: center;
     text-shadow: 0 0 8px var(--shadow-color);
 }
@@ -337,7 +339,7 @@ a {
 footer.site-footer {
     position: absolute;
     left: 50%;
-    bottom: clamp(18px, 2.4vw, 42px);
+    bottom: clamp(18px, 1.8vw, 46px);
     z-index: 9;
     transform: translateX(-50%);
     display: flex;
