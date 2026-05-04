@@ -141,15 +141,15 @@ Their desktop size and position are controlled in `assets/css/styles.css`:
 
 ```css
 .about-frame-panel-primary {
-  top: 30.8%;
-  right: 4.4%;
+  top: 18.8%;
+  right: 3.4%;
   width: min(23.5%, 370px);
   aspect-ratio: 971 / 1619;
 }
 
 .about-frame-panel-secondary {
-  top: 30.8%;
-  left: 5.2%;
+  top: 20.8%;
+  left: 3.4%;
   width: min(23%, 360px);
   aspect-ratio: 1;
 }
