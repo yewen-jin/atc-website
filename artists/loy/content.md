@@ -29,14 +29,6 @@ Memories of this time... sleeping on the dust-covered floor with people I didn't
 Most images of this work are lost or redacted. (Back up your phones ppl). 
 I guess you'll have to use your imagination. 
 
-{{ 2b. ABOVE GROUND RESEARCH. 
-
-What do others think? 
-
-Above ground, I explored. An ongoing exploration, workshops and meetings with Artists Alliance, Identity 2.0, Shape Arts, Cyberdelic Nexus, Accept The Cookies residency. 
-Journalling. Jugaad. I hadn't realised this has been a lot of my creative career. The idea that if your sandal breaks, you tie it around your foot with a shoelace. }}
-(Photos of the residency scroll?)
-
 3. GET OVER YOUR CRINGE.
 What do you want a better internet to look like? 
 This piece started in response to our team chat. As a group we explored what questions we wanted to ask. I created a deck of 52 cards with questions inspired by these conversations. 
@@ -52,27 +44,7 @@ This was an exercise in rapid-prototyping and nailing an immersive production pr
 Cinematography, Facepaint Artist: Vivi Lara
 Assistant Producer: Joleen White
 
-
-5. WORKSHOPS.
-Edmonton Green Library & Fore Street For All. 
-Condensing the whole Experiment process into a short space of time. How to collectively hold space with broad-ranging ideas? 
-(Pictures from workshops)
-5b RESIDENCY. 
-
-Artists spent time together having critical conversations.
-
-6. THE WRONG BIENNALE ???
-Styly. (link)
-
-7. EXPERIMENTS. 
-PlayCanvas
-VR Passthrough. Special thanks to The Metaverse Venus and Marina for their guidance and support on this. 
-Graphics
-Obsidian Vault.
-TouchDesigner
-Research
-
-8. CHAPTER -88
+5. CHAPTER -88
 What is on the other side?
 After a period of research-heavy work, Chapter -88 felt refreshingly intuitive. It started from daydreams without words and the 'this-doesn't-make-any-kind-of-rational-sense' side of the brain. 
 The piece shows a glassy-eyed androgyne with cyber sigil influenced facepaint, sat behind an empty fishtank and drifting into visions of an alternative world.  
@@ -83,7 +55,7 @@ Chapter -88 was first shown at arebyte Digital Art Centre (Bring Your Own Beamer
 Available on CIFRA: https://cifra.com/project/chapter-88-0
 
 
-9. SERAPHIM
+6. SERAPHIM
 The angel knows all, shows all, but will not do that while you are looking.
 
 SERAPHIM is a collaborative piece devised by the artist Manaal Asim and supported by Loy. It is a conceptual artwork about biblically accurate angels who dwell in the BTS of the internet. The work was developed on Blender (Manaal) and TouchDesigner (Loy). 
