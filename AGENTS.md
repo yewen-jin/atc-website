@@ -47,6 +47,12 @@ This is a vanilla HTML/CSS/JS website for the "Accept the Cookies" arts collecti
 - Section-switching is done with a small inline `<script>` that toggles `.active` on nav items and `.section` panels — keep this pattern when adding new sections.
 - Livi's gallery script additionally maintains `currentSlide`; keep thumbnails, `data-slide-step` controls, and keyboard arrows routed through the same `showSlide()` function so the active thumbnail and caption stay synchronized.
 
+- **Loy Room Themes:**
+  - `artists/loy/assets/theme.css` is the active stylesheet for Loy's room and subprojects.
+  - `artists/loy/assets/theme-light.css` contains the complete white background light theme.
+  - `artists/loy/assets/theme-dark.css` contains the complete dark background dark theme.
+  - To switch between dark and light themes at any time, overwrite `theme.css` with the respective backup stylesheet (`theme-dark.css` or `theme-light.css`).
+
 ## Workflows & Adding Content
 - When adding a new artist:
   1. Create `artists/<name>/index.html` containing markup and the section-switching script only.

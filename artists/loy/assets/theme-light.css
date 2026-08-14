@@ -11,10 +11,10 @@
 
 :root {
   /* Color — Palette */
-  --void: #050505;
+  --void: #ffffff;
   --black: #000000;
   --white: #ffffff;
-  --white-glow: rgba(255, 255, 255, 0.25);
+  --white-glow: rgba(0, 0, 0, 0.15);
 
   /* Color — Accents */
   --pink: #ff315c;
@@ -23,9 +23,9 @@
   --blood: #ff1a1a;
 
   /* Color — Labels & Text */
-  --cctv-label: #ffffff;
-  --info-label: #ffffff;
-  --status-text: #777777;
+  --cctv-label: #555555;
+  --info-label: #000000;
+  --status-text: #555555;
 
   /* Layout */
   --shell-max: 1080px;
@@ -76,7 +76,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ── BACK LINK (No Red Shadow, Clean Button) ── */
+/* ── BACK LINK (Clean Button) ── */
 .back-link {
   position: fixed;
   top: var(--sp-6);
@@ -286,7 +286,7 @@ body {
   }
 }
 
-/* ── TEXT BLOCKS & LINKS (White Links) ── */
+/* ── TEXT BLOCKS & LINKS ── */
 .text-block {
   font-family: "W95Fa", "Courier New", monospace;
   font-size: var(--fs-5);
@@ -323,7 +323,7 @@ blockquote {
   background: transparent;
 }
 
-/* ── CREDITS SECTION (Clean & White) ── */
+/* ── CREDITS SECTION ── */
 .credits-section {
   margin-top: var(--sp-10);
   padding-top: var(--sp-8);
