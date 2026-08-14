@@ -84,13 +84,19 @@ Available on CIFRA: https://cifra.com/project/chapter-88-0
 
 
 9. SERAPHIM
-Concept by Manaal Asim (link) - Manaal built on Blender. Creative discussions. Manaal built a cube Seraphim. 
-We spent time devising a concept, Manaal went and built, and I created video outputs on TouchDesigner, ready for interactive installations. 
-This work follows a concept set in the backrooms, where angels process code faster than any human.
-Biblically accurate angels in the BTS of the internet, being able to conceptualise code that would fill a whole room.
-As humans, processing information one chunk at a time while scrolling. Seeing a tiny fragment of what is online at a time. Social media as a bombardment of energy. The interface - a tiny fragment of what's online.
-A seraphim brought to life through a series of cubes on Blender, which I then took screen recordings into TouchDesigner and also dropped into Unreal Engine. 
-Creating art beyond the senses and beyond our comprehension. So much coming from so many places. Tailoring the feed because it would be so overwhelming otherwise.
-The angel knows all, shows all, and will not do that in front of you. Like 
-Accepting the cookies, putting self intto a massive database.
-The thing you can't comprehend. Even a little (Krsna true form)
+The angel knows all, shows all, but will not do that while you are looking.
+
+SERAPHIM is a collaborative piece devised by the artist Manaal Asim and supported by Loy. It is a conceptual artwork about biblically accurate angels who dwell in the BTS of the internet. The work was developed on Blender (Manaal) and TouchDesigner (Loy). 
+
+The piece explores the idea of 'wormholing'. The idea of the internet as a teleporter, where users can travel at warp speed. That is instead of doomscrolling, where users are fed linear information in algorithmic feeds.
+
+We spent some time exploring and developing this concept. The seraphim became a being who could absorb and understand code faster than any human. Not bound by a body, but running fluidly inside the network- switching between realities and programs. 
+
+As humans we process small chunks of information at a time - especially online. It would be too much to take it all in at once. It wouldn't make sense to our human brains. Social media may feel like a bombardment of energy, but it is also gives us bite-sized pieces of media, one by one. 
+
+The idea of personifying living entities who can process whole rooms filled with code in a split second. How do humans see them? How do they interact? Where do they hang out? 
+
+The eeriest thing: Seraphim behaved REALLY weirdly when I uploaded them into realtime engines. Like, they were everywhere and nowhere all at once. It's hard to explain. 
+
+Concept & 3D Modelling - Manaal Asim
+Production & TouchDesigner - Loy
