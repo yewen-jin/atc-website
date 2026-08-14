@@ -108,10 +108,12 @@
           featuredImg.alt = current.alt;
         }
 
-        if (lightbox && lightbox.classList.contains('is-open')) {
+        if (lightboxImg) {
           lightboxImg.src = current.src;
           lightboxImg.alt = current.alt;
-          if (lightboxCaption) lightboxCaption.textContent = current.alt;
+        }
+        if (lightboxCaption) {
+          lightboxCaption.textContent = current.alt;
         }
 
         gridImgs.forEach(img => {
@@ -122,12 +124,18 @@
         });
       }
 
+      // Preload images for instant lightbox response
+      images.forEach(item => {
+        const preloader = new Image();
+        preloader.src = item.src;
+      });
+
       function openLightbox(index) {
         if (!lightbox) return;
-        showImage(index);
         lightbox.classList.add('is-open');
         lightbox.setAttribute('aria-hidden', 'false');
         document.body.classList.add('lightbox-open');
+        showImage(index);
         if (lightboxClose) lightboxClose.focus();
       }
 

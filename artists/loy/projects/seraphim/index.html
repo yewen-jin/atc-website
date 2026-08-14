@@ -196,6 +196,14 @@
         });
       }
 
+      // Preload images for instant lightbox response
+      mediaItems.forEach(item => {
+        if (item.type === 'image') {
+          const preloader = new Image();
+          preloader.src = item.src;
+        }
+      });
+
       function openLightbox(index) {
         if (!lightbox) return;
         lightbox.classList.add('is-open');
