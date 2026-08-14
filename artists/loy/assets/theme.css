@@ -60,7 +60,7 @@ body {
   background-color: var(--void);
   background-image:
     linear-gradient(180deg, rgba(5, 5, 5, 0.82) 0%, rgba(5, 5, 5, 0.92) 50%, rgba(5, 5, 5, 0.98) 100%),
-    url("7. Chapter -88/NEEDS RESIZING.JPEG");
+    url("ambient-bg.webp");
   background-size: cover;
   background-position: center top;
   background-attachment: fixed;
