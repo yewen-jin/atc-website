@@ -167,24 +167,26 @@ body {
 }
 
 /* ── CHAPTER / PROJECT INDEX ── */
-/* ── PROJECT LIST & HOVER PREVIEW CONTAINER ── */
+/* ── PROJECT LIST & HOVER PREVIEW CONTAINER (Feature Image Behind Text) ── */
 .projects-container {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
-  gap: var(--sp-9);
-  align-items: start;
-  margin: var(--sp-9) 0 var(--sp-10);
-  min-height: 440px;
   position: relative;
+  width: 100%;
+  min-height: clamp(480px, 65vh, 720px);
+  margin: var(--sp-9) 0 var(--sp-10);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
 .project-title-list {
+  position: relative;
+  z-index: 10;
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--sp-6);
+  gap: var(--sp-4);
   margin: 0;
-  padding: 0;
+  padding: var(--sp-8);
 }
 
 .project-item {
@@ -194,24 +196,28 @@ body {
 
 .project-title-link {
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
   gap: var(--sp-3);
   font-family: "W95Fa", "Courier New", monospace;
   font-size: var(--fs-heading);
   color: var(--white);
   text-transform: uppercase;
-  letter-spacing: .04em;
+  letter-spacing: .05em;
   line-height: 1.25;
   text-decoration: none;
-  padding: var(--sp-1) 0;
-  transition: color .2s ease, transform .2s ease;
+  background: #000000;
+  padding: var(--sp-2) var(--sp-5);
+  border: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.85);
+  width: fit-content;
+  transition: color .2s ease, transform .2s ease, background .2s ease;
   cursor: pointer;
 }
 
 .project-card-num {
   font-family: "W95Fa", "Courier New", monospace;
   font-size: 0.85em;
-  color: #777777;
+  color: #888888;
   font-weight: normal;
   letter-spacing: .04em;
   transition: color .2s ease;
@@ -221,6 +227,7 @@ body {
 .project-title-link.is-hovered {
   color: var(--pink);
   transform: translateX(8px);
+  background: #000000;
 }
 
 .project-title-link:hover .project-card-num,
@@ -228,22 +235,25 @@ body {
   color: var(--pink);
 }
 
-/* ── PREVIEW STAGE (Image displays on hover, clicks navigate to project) ── */
+/* ── PREVIEW STAGE (Feature Image Behind Text) ── */
 .project-preview-stage {
-  position: sticky;
-  top: var(--sp-8);
+  position: absolute;
+  inset: 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
+  z-index: 1;
+  display: block;
 }
 
 .project-preview-item {
   display: none;
+  position: absolute;
+  inset: 0;
   width: 100%;
+  height: 100%;
   text-decoration: none;
   cursor: pointer;
-  animation: fadeInPreview 0.22s ease forwards;
+  animation: fadeInPreview 0.25s ease forwards;
 }
 
 .project-preview-item.is-active {
@@ -253,9 +263,9 @@ body {
 .project-preview-item img {
   display: block;
   width: 100%;
-  height: auto;
-  max-height: 70vh;
+  height: 100%;
   object-fit: contain;
+  object-position: right center;
   border: none;
   filter: contrast(1.05);
   transition: transform .3s ease, filter .3s ease;
@@ -269,11 +279,9 @@ body {
 @keyframes fadeInPreview {
   from {
     opacity: 0;
-    transform: translateY(4px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -769,12 +777,15 @@ body.lightbox-open {
     font-size: var(--fs-4);
   }
   .projects-container {
-    grid-template-columns: 1fr;
-    gap: var(--sp-6);
+    min-height: clamp(380px, 50vh, 520px);
   }
-  .project-preview-stage {
-    position: static;
-    margin-top: var(--sp-4);
+  .project-title-list {
+    padding: var(--sp-4);
+    gap: var(--sp-3);
+  }
+  .project-preview-item img {
+    object-position: center;
+    opacity: 0.65;
   }
   .project-nav {
     flex-direction: column;
