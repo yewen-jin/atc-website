@@ -3,30 +3,22 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>08. Chapter -88 — Loy — Accept the Cookies</title>
+  <title>05. Chapter -88 — Loy — Accept the Cookies</title>
   <link rel="stylesheet" href="../../assets/theme.css"/>
 </head>
 <body>
   <a href="../../index.html" class="back-link">← Loy</a>
 
-  <div class="cctv-bar">
-    <span class="cctv-label"><span class="rec-dot"></span> REC &nbsp;·&nbsp; CAM_04 &nbsp;·&nbsp; CHAPTER -88</span>
-    <div class="leds">
-      <div class="led blue-led"></div>
-      <div class="led"></div>
-      <div class="led" style="animation-delay:.3s"></div>
-    </div>
-  </div>
-
   <div class="page">
-    <div class="scanline"></div>
     <div class="project-page">
-      <h2 class="project-title">08. Chapter -88</h2>
+      <h2 class="project-title">05. Chapter -88</h2>
       <p class="project-question">What is on the other side?</p>
       <div class="featured-panel project-media">
-        <img class="featured-img" src="../../assets/7. Chapter -88/NEEDS RESIZING.JPEG" alt="Chapter -88 video still with figure and fish tank" loading="eager" decoding="async"/>
+        <button class="gallery-nav-btn prev" type="button" aria-label="Previous image">←</button>
+        <img class="featured-img" src="../../assets/7. Chapter -88/chapter88-01.webp" alt="Chapter -88 digital environment screenshot" loading="eager" decoding="async"/>
+        <button class="gallery-nav-btn next" type="button" aria-label="Next image">→</button>
         <span class="cctv-stamp-tr">CAM_04 // CHAPTER -88</span>
-        <span class="cctv-stamp"><span class="rec-dot"></span> ARCHIVE // 08</span>
+        <span class="cctv-stamp">ARCHIVE // 05</span>
       </div>
       <div class="text-block">
         <p>After a period of research-heavy work, Chapter -88 felt refreshingly intuitive. It started from daydreams without words and the 'this-doesn't-make-any-kind-of-rational-sense' side of the brain.</p>
@@ -35,16 +27,13 @@
       </div>
       <div class="image-grid image-grid-wide">
         <figure class="image-card">
-          <img src="../../assets/7. Chapter -88/160bpm A Minor 1-1.00_04_54_11.Still002.png" alt="Chapter -88 moving image still" loading="lazy" decoding="async"/>
-          <figcaption>// moving image</figcaption>
+          <img src="../../assets/7. Chapter -88/chapter88-02.webp" alt="Chapter -88 video still with figure and fish tank" loading="lazy" decoding="async"/>
         </figure>
         <figure class="image-card">
-          <img src="../../assets/7. Chapter -88/Screenshot 2026-04-28 12.28.35.png" alt="Chapter -88 digital environment screenshot" loading="lazy" decoding="async"/>
-          <figcaption>// digital environment</figcaption>
+          <img src="../../assets/7. Chapter -88/chapter88-03.webp" alt="Chapter -88 moving image still" loading="lazy" decoding="async"/>
         </figure>
         <figure class="image-card">
-          <img src="../../assets/7. Chapter -88/Screenshot 2026-04-28 12.48.28.png" alt="Chapter -88 digital environment screenshot" loading="lazy" decoding="async"/>
-          <figcaption>// alternate view</figcaption>
+          <img src="../../assets/7. Chapter -88/chapter88-04.webp" alt="Chapter -88 digital environment screenshot" loading="lazy" decoding="async"/>
         </figure>
       </div>
       <div class="info-panel">
@@ -60,53 +49,162 @@
           <a href="https://cifra.com/project/chapter-88-0">cifra.com/project/chapter-88-0</a>
         </p>
       </div>
+
+      <nav class="project-nav" aria-label="Project Navigation">
+        <a href="../chapter0/" class="project-nav-link prev">
+          <span class="nav-arrow">←</span>
+          <span>04. Chapter 0</span>
+        </a>
+        <a href="../seraphim/" class="project-nav-link next">
+          <span>06. Seraphim</span>
+          <span class="nav-arrow">→</span>
+        </a>
+      </nav>
     </div>
   </div>
 
   <div class="status-bar">
-    <span class="status-text">accept-the-cookies.net // loy // chapter -88</span>
+    <img src="../../assets/blinkiesCafe-0o.gif" alt="Blinkie" class="footer-blinkie" />
+    <span class="status-text">loy // chapter -88</span>
   </div>
 
   <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
+    <button class="lightbox-nav-btn prev" type="button" aria-label="Previous image">←</button>
     <div class="lightbox-frame" role="dialog" aria-modal="true" aria-label="Expanded image">
       <button class="lightbox-close" type="button" aria-label="Close expanded image">X</button>
       <img class="lightbox-img" src="" alt=""/>
       <p class="lightbox-caption"></p>
     </div>
+    <button class="lightbox-nav-btn next" type="button" aria-label="Next image">→</button>
   </div>
 
   <script>
-    const lightbox = document.getElementById('image-lightbox');
-    const lightboxImg = lightbox.querySelector('.lightbox-img');
-    const lightboxCaption = lightbox.querySelector('.lightbox-caption');
-    const lightboxClose = lightbox.querySelector('.lightbox-close');
+    (function () {
+      const images = [];
+      const featuredImg = document.querySelector('.featured-img');
+      const gridImgs = document.querySelectorAll('.image-grid img');
 
-    const openLightbox = (img) => {
-      lightboxImg.src = img.currentSrc || img.src;
-      lightboxImg.alt = img.alt || '';
-      lightboxCaption.textContent = img.alt || '';
-      lightbox.classList.add('is-open');
-      lightbox.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('lightbox-open');
-      lightboxClose.focus();
-    };
+      if (featuredImg) {
+        images.push({
+          src: featuredImg.getAttribute('src'),
+          alt: featuredImg.getAttribute('alt') || ''
+        });
+      }
 
-    const closeLightbox = () => {
-      lightbox.classList.remove('is-open');
-      lightbox.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('lightbox-open');
-      lightboxImg.removeAttribute('src');
-    };
+      gridImgs.forEach((img) => {
+        const src = img.getAttribute('src');
+        if (!images.some(item => item.src === src)) {
+          images.push({
+            src: src,
+            alt: img.getAttribute('alt') || ''
+          });
+        }
+      });
 
-    document.querySelectorAll('.project-media img, .image-grid img').forEach(img => {
-      img.addEventListener('click', () => openLightbox(img));
-    });
+      let currentIndex = 0;
+      const prevBtns = document.querySelectorAll('.gallery-nav-btn.prev, .lightbox-nav-btn.prev');
+      const nextBtns = document.querySelectorAll('.gallery-nav-btn.next, .lightbox-nav-btn.next');
+      const lightbox = document.getElementById('image-lightbox');
+      const lightboxImg = lightbox ? lightbox.querySelector('.lightbox-img') : null;
+      const lightboxCaption = lightbox ? lightbox.querySelector('.lightbox-caption') : null;
+      const lightboxClose = lightbox ? lightbox.querySelector('.lightbox-close') : null;
 
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (event) => { if (event.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
-    });
+      function showImage(index) {
+        if (images.length === 0) return;
+        currentIndex = (index + images.length) % images.length;
+        const current = images[currentIndex];
+
+        if (featuredImg) {
+          featuredImg.src = current.src;
+          featuredImg.alt = current.alt;
+        }
+
+        if (lightboxImg) {
+          lightboxImg.src = current.src;
+          lightboxImg.alt = current.alt;
+        }
+        if (lightboxCaption) {
+          lightboxCaption.textContent = current.alt;
+        }
+
+        gridImgs.forEach(img => {
+          const card = img.closest('.image-card');
+          if (card) {
+            card.classList.toggle('is-active-thumb', img.getAttribute('src') === current.src);
+          }
+        });
+      }
+
+      // Preload images for instant lightbox response
+      images.forEach(item => {
+        const preloader = new Image();
+        preloader.src = item.src;
+      });
+
+      function openLightbox(index) {
+        if (!lightbox) return;
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('lightbox-open');
+        showImage(index);
+        if (lightboxClose) lightboxClose.focus();
+      }
+
+      function closeLightbox() {
+        if (!lightbox) return;
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('lightbox-open');
+      }
+
+      if (featuredImg) {
+        featuredImg.addEventListener('click', () => openLightbox(currentIndex));
+      }
+
+      gridImgs.forEach((img) => {
+        img.addEventListener('click', () => {
+          const idx = images.findIndex(item => item.src === img.getAttribute('src'));
+          if (idx !== -1) {
+            showImage(idx);
+            openLightbox(idx);
+          }
+        });
+      });
+
+      prevBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          showImage(currentIndex - 1);
+        });
+      });
+
+      nextBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          showImage(currentIndex + 1);
+        });
+      });
+
+      if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeLightbox);
+      }
+
+      if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox) closeLightbox();
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          showImage(currentIndex - 1);
+        } else if (e.key === 'ArrowRight') {
+          showImage(currentIndex + 1);
+        } else if (e.key === 'Escape' && lightbox && lightbox.classList.contains('is-open')) {
+          closeLightbox();
+        }
+      });
+    })();
   </script>
 </body>
 </html>

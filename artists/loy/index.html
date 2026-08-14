@@ -7,24 +7,10 @@
         <link rel="stylesheet" href="assets/theme.css" />
     </head>
     <body>
-        <a href="../../index.html" class="back-link">← home</a>
-
-        <!-- CCTV header bar -->
-        <div class="cctv-bar">
-            <span class="cctv-label"
-                ><span class="rec-dot"></span> REC &nbsp;·&nbsp; CAM_04
-                &nbsp;·&nbsp; ARTIST: LOY</span
-            >
-            <div class="leds">
-                <div class="led blue-led"></div>
-                <div class="led"></div>
-                <div class="led" style="animation-delay: 0.3s"></div>
-            </div>
-        </div>
+        <a href="../../index.html" class="back-link">home</a>
 
         <!-- Page shell -->
         <div class="page">
-            <div class="scanline"></div>
 
             <!-- Title -->
             <div class="title-block">
@@ -34,190 +20,101 @@
                 <p class="tagline">
                     ∴ surveillance · ritual technology · world-building ∴
                 </p>
-                <p class="source-quote">"source? me. i am the source."</p>
+                <p class="source-quote">The following documents personal research and development experimenting with different artforms in response to the Immersive Arts UK Experiment fund as part of Accept The Cookies</p>
             </div>
 
-            <!-- Project index -->
-            <ul class="project-index">
-                <li>
-                    <a class="project-card-link" href="projects/gatekeeper/">
-                        <span class="project-card-num">01</span>
+            <!-- Project title list & hover image preview -->
+            <div class="projects-container">
+                <ul class="project-title-list">
+                    <li class="project-item">
+                        <a href="projects/gatekeeper/" class="project-title-link" data-project="0">
+                            <span class="project-card-num">01</span> Gatekeeper
+                        </a>
+                    </li>
+                    <li class="project-item">
+                        <a href="projects/underground/" class="project-title-link" data-project="1">
+                            <span class="project-card-num">02</span> Going Underground
+                        </a>
+                    </li>
+                    <li class="project-item">
+                        <a href="projects/cringe/" class="project-title-link" data-project="2">
+                            <span class="project-card-num">03</span> Get Over Your Cringe
+                        </a>
+                    </li>
+                    <li class="project-item">
+                        <a href="projects/chapter0/" class="project-title-link" data-project="3">
+                            <span class="project-card-num">04</span> Chapter 0
+                        </a>
+                    </li>
+                    <li class="project-item">
+                        <a href="projects/chapter88/" class="project-title-link" data-project="4">
+                            <span class="project-card-num">05</span> Chapter -88
+                        </a>
+                    </li>
+                    <li class="project-item">
+                        <a href="projects/seraphim/" class="project-title-link" data-project="5">
+                            <span class="project-card-num">06</span> Seraphim
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Hover image preview stage -->
+                <div class="project-preview-stage">
+                    <a href="projects/gatekeeper/" class="project-preview-item is-active" data-project="0" aria-label="Gatekeeper">
                         <img
-                            class="project-card-thumb"
-                            src="assets/1. Gatekeeper/CFC0A715-C692-47A2-AAD3-19B06ACA2A74.JPEG"
+                            src="assets/1. Gatekeeper/gatekeeper-01.webp"
                             alt="Gatekeeper installation"
                             loading="lazy"
                             decoding="async"
                         />
-                        <div class="project-card-body">
-                            <h2 class="project-card-title">Gatekeeper</h2>
-                            <p class="project-card-summary">
-                                A CCTV video installation that makes invisible
-                                data tracking visible, asking what it really
-                                means to click 'accept'.
-                            </p>
-                        </div>
                     </a>
-                </li>
-
-                <li>
-                    <a class="project-card-link" href="projects/underground/">
-                        <span class="project-card-num">02</span>
+                    <a href="projects/underground/" class="project-preview-item" data-project="1" aria-label="Going Underground">
                         <img
-                            class="project-card-thumb"
-                            src="assets/2. Going Underground/C10EDF0F-0D32-4351-9962-773211AF8891.JPEG"
+                            src="assets/2. Going Underground/underground-01.webp"
                             alt="Going Underground research"
                             loading="lazy"
                             decoding="async"
                         />
-                        <div class="project-card-body">
-                            <h2 class="project-card-title">
-                                Going Underground
-                            </h2>
-                            <p class="project-card-summary">
-                                An esoteric exploration of low-tech and no-tech
-                                — drawing hand-activated portals in autonomous
-                                spaces and asking whether spirit can inhabit a
-                                machine.
-                            </p>
-                        </div>
                     </a>
-                </li>
-
-                <li>
-                    <a class="project-card-link" href="projects/cringe/">
-                        <span class="project-card-num">03</span>
+                    <a href="projects/cringe/" class="project-preview-item" data-project="2" aria-label="Get Over Your Cringe">
                         <img
-                            class="project-card-thumb"
-                            src="assets/3. Get Over Your Cringe/IMG_4987.JPG"
+                            src="assets/3. Get Over Your Cringe/cringe-01.webp"
                             alt="Get Over Your Cringe installation"
                             loading="lazy"
                             decoding="async"
                         />
-                        <div class="project-card-body">
-                            <h2 class="project-card-title">
-                                Get Over Your Cringe
-                            </h2>
-                            <p class="project-card-summary">
-                                A deck of 52 questions used to spark over 200
-                                real conversations across the UK about what
-                                people want from a better internet.
-                            </p>
-                        </div>
                     </a>
-                </li>
-
-                <li>
-                    <a class="project-card-link" href="projects/chapter0/">
-                        <span class="project-card-num">04</span>
+                    <a href="projects/chapter0/" class="project-preview-item" data-project="3" aria-label="Chapter 0">
                         <img
-                            class="project-card-thumb"
-                            src="assets/5. Chapter 0/MVI_5101.00_33_09_23.Still015.png"
+                            src="assets/5. Chapter 0/chapter0-01.webp"
                             alt="Chapter 0 video still"
                             loading="lazy"
                             decoding="async"
                         />
-                        <div class="project-card-body">
-                            <h2 class="project-card-title">Chapter 0</h2>
-                            <p class="project-card-summary">
-                                A video installation following an impressionable
-                                hacker spiralling into AI-induced psychosis,
-                                shown at the Immersive Experience Network
-                                Summit.
-                            </p>
-                        </div>
                     </a>
-                </li>
-
-                <li>
-                    <a class="project-card-link" href="projects/workshops/">
-                        <span class="project-card-num">05</span>
-                        <div class="project-card-body project-card-body--full">
-                            <h2 class="project-card-title">Workshops</h2>
-                            <p class="project-card-summary placeholder">
-                                Community workshops condensing the full project
-                                research process into short, participatory
-                                sessions at Edmonton Green Library and Fore
-                                Street For All. [Placeholder]
-                            </p>
-                        </div>
-                    </a>
-                </li>
-
-                <li>
-                    <a class="project-card-link" href="projects/biennale/">
-                        <span class="project-card-num">06</span>
-                        <div class="project-card-body project-card-body--full">
-                            <h2 class="project-card-title">
-                                The Wrong Biennale
-                            </h2>
-                            <p class="project-card-summary placeholder">
-                                An online exhibition presence through Styly at
-                                The Wrong Biennale. [Placeholder]
-                            </p>
-                        </div>
-                    </a>
-                </li>
-
-                <li>
-                    <a class="project-card-link" href="projects/experiments/">
-                        <span class="project-card-num">07</span>
-                        <div class="project-card-body project-card-body--full">
-                            <h2 class="project-card-title">Experiments</h2>
-                            <p class="project-card-summary">
-                                A collection of technical experiments — VR
-                                passthrough, TouchDesigner, PlayCanvas —
-                                documenting the tools and interfaces behind the
-                                work.
-                            </p>
-                        </div>
-                    </a>
-                </li>
-
-                <li>
-                    <a class="project-card-link" href="projects/chapter88/">
-                        <span class="project-card-num">08</span>
+                    <a href="projects/chapter88/" class="project-preview-item" data-project="4" aria-label="Chapter -88">
                         <img
-                            class="project-card-thumb"
-                            src="assets/7. Chapter -88/NEEDS RESIZING.JPEG"
+                            src="assets/7. Chapter -88/chapter88-01.webp"
                             alt="Chapter -88 video still"
                             loading="lazy"
                             decoding="async"
                         />
-                        <div class="project-card-body">
-                            <h2 class="project-card-title">Chapter -88</h2>
-                            <p class="project-card-summary">
-                                A moving image piece following a glassy-eyed
-                                androgyne drifting into visions of an
-                                alternative world behind an empty fish tank,
-                                first shown at arebyte Digital Art Centre.
-                            </p>
-                        </div>
                     </a>
-                </li>
-
-                <li>
-                    <a class="project-card-link" href="projects/seraphim/">
-                        <span class="project-card-num">09</span>
+                    <a href="projects/seraphim/" class="project-preview-item" data-project="5" aria-label="Seraphim">
                         <img
-                            class="project-card-thumb"
-                            src="assets/8. Seraphim/F59A6D03-A487-4AA6-984D-D981CA7B0622.JPEG"
+                            src="assets/8. Seraphim/seraphim-01.webp"
                             alt="Seraphim cube sculpture"
                             loading="lazy"
                             decoding="async"
                         />
-                        <div class="project-card-body">
-                            <h2 class="project-card-title">Seraphim</h2>
-                            <p class="project-card-summary">
-                                A 3D and video collaboration imagining
-                                biblically accurate angels processing internet
-                                code in the backrooms, built in Blender and
-                                rendered in TouchDesigner.
-                            </p>
-                        </div>
                     </a>
-                </li>
-            </ul>
+                </div>
+            </div>
+
+            <div class="text-block">More of my work:<br>
+                <a href="https://loycreator.com" target="_blank">loycreator.com</a><br>
+                <a href="https://instagram.com/loycreator" target="_blank">@loycreator</a>
+            </div>
 
             <!-- Credits -->
             <div class="credits-section">
@@ -260,16 +157,15 @@
                         <p class="credits-label">Additional Thanks</p>
                         <p class="credits-line">
                             to workshop providers and individuals who kindly
-                            supported along the way.
+                            supported along the way
                         </p>
-                        <p class="credits-line">Isil Celik</p>
+                        <p class="credits-line">Dr Isil Ezgi Celik</p>
                         <p class="credits-line">DYSPLA</p>
                         <p class="credits-line">Identity 2.0</p>
                         <p class="credits-line">Arebyte</p>
                         <p class="credits-line">Ornagh</p>
                         <p class="credits-line">The Metaverse Venus</p>
-                        <p class="credits-line">(Anonymous)</p>
-                        <p class="credits-line">(Anonymous)</p>
+                        <p class="credits-line">marinapls</p>
                         <p class="credits-line">Fore Street For All</p>
                         <p class="credits-line">
                             Enfield BIPC (Business &amp; IP Centre)
@@ -286,9 +182,35 @@
 
         <!-- Status bar -->
         <div class="status-bar">
-            <span class="status-text"
-                >accept-the-cookies.net // loy // 2026</span
-            >
+            <img src="assets/blinkiesCafe-0o.gif" alt="Blinkie" class="footer-blinkie" />
+            <span class="status-text">loy // 2026</span>
         </div>
+
+        <script>
+            (function () {
+                const titleLinks = document.querySelectorAll('.project-title-link');
+                const previewItems = document.querySelectorAll('.project-preview-item');
+
+                function activateProject(projectIndex) {
+                    titleLinks.forEach(link => {
+                        const matches = link.dataset.project === projectIndex;
+                        link.classList.toggle('is-hovered', matches);
+                    });
+                    previewItems.forEach(item => {
+                        const matches = item.dataset.project === projectIndex;
+                        item.classList.toggle('is-active', matches);
+                    });
+                }
+
+                titleLinks.forEach(link => {
+                    link.addEventListener('mouseenter', () => {
+                        activateProject(link.dataset.project);
+                    });
+                    link.addEventListener('focus', () => {
+                        activateProject(link.dataset.project);
+                    });
+                });
+            })();
+        </script>
     </body>
 </html>

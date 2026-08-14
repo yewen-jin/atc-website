@@ -57,9 +57,9 @@
 
 /* ── BODY: Unified font family across all elements ── */
 body {
-  background-color: #ffffff;
+  background-color: var(--void);
   background-image:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.84) 0%, rgba(255, 255, 255, 0.92) 50%, rgba(255, 255, 255, 0.98) 100%),
+    linear-gradient(180deg, rgba(5, 5, 5, 0.82) 0%, rgba(5, 5, 5, 0.92) 50%, rgba(5, 5, 5, 0.98) 100%),
     url("ambient-bg.webp");
   background-size: cover;
   background-position: center top;
@@ -67,7 +67,7 @@ body {
   background-repeat: no-repeat;
   min-height: 100vh;
   font-family: "W95Fa", "Courier New", monospace;
-  color: #111111;
+  color: #ededed;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,15 +76,15 @@ body {
   overflow-x: hidden;
 }
 
-/* ── BACK LINK (No Red Shadow, Clean Button) ── */
+/* ── BACK LINK (Clean Button) ── */
 .back-link {
   position: fixed;
   top: var(--sp-6);
   right: var(--sp-6);
   z-index: 120;
   padding: var(--sp-2) var(--sp-5);
-  background: var(--black);
-  color: var(--white);
+  background: var(--white);
+  color: var(--black);
   font-family: "W95Fa", "Courier New", monospace;
   font-size: var(--fs-4);
   font-weight: bold;
@@ -97,9 +97,8 @@ body {
 }
 .back-link:hover {
   transform: translateY(-1px);
-  background: var(--pink);
-  color: var(--white);
-  border-color: var(--pink);
+  background: #dcdcdc;
+  color: var(--black);
   box-shadow: none;
 }
 
@@ -131,19 +130,19 @@ body {
 .main-title {
   font-size: var(--fs-display);
   font-weight: 900;
-  color: #000000;
+  color: var(--white);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   line-height: 0.9;
   display: block;
   font-family: "W95Fa", "Courier New", monospace;
-  text-shadow: none;
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
 }
 
 .tagline {
   font-family: "W95Fa", "Courier New", monospace;
   font-size: var(--fs-4);
-  color: #000000;
+  color: #ffffff;
   letter-spacing: .14em;
   text-transform: uppercase;
   margin-top: var(--sp-4);
@@ -154,7 +153,7 @@ body {
 .source-quote {
   font-family: "W95Fa", "Courier New", monospace;
   font-size: var(--fs-5);
-  color: #444444;
+  color: #cccccc;
   font-style: italic;
   margin-top: var(--sp-5);
   letter-spacing: .02em;
@@ -286,11 +285,11 @@ body {
   }
 }
 
-/* ── TEXT BLOCKS & LINKS (White Links) ── */
+/* ── TEXT BLOCKS & LINKS ── */
 .text-block {
   font-family: "W95Fa", "Courier New", monospace;
   font-size: var(--fs-5);
-  color: #222222;
+  color: #cccccc;
   line-height: 1.7;
   max-width: 680px;
   margin-bottom: var(--sp-8);
@@ -304,7 +303,7 @@ body {
 
 .text-block a, .info-panel a {
   font-family: "W95Fa", "Courier New", monospace;
-  color: #000000;
+  color: var(--white);
   text-decoration: underline;
   transition: color .15s ease;
 }
@@ -317,13 +316,13 @@ blockquote {
   border-left: 4px solid var(--pink);
   padding: var(--sp-3) var(--sp-6);
   margin: var(--sp-6) 0;
-  color: #111111;
+  color: #f0f0f0;
   font-style: italic;
   font-size: var(--fs-6);
   background: transparent;
 }
 
-/* ── CREDITS SECTION (Clean & White) ── */
+/* ── CREDITS SECTION ── */
 .credits-section {
   margin-top: var(--sp-10);
   padding-top: var(--sp-8);
@@ -337,7 +336,7 @@ blockquote {
 
 .credits-label {
   font-family: "W95Fa", "Courier New", monospace;
-  color: #000000;
+  color: var(--white);
   font-size: var(--fs-5);
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -349,7 +348,7 @@ blockquote {
 
 .credits-sublabel {
   font-family: "W95Fa", "Courier New", monospace;
-  color: #555555;
+  color: var(--cctv-label);
   font-size: var(--fs-3);
   font-style: italic;
   margin-bottom: var(--sp-3);
@@ -357,7 +356,7 @@ blockquote {
 
 .credits-line {
   font-family: "W95Fa", "Courier New", monospace;
-  color: #444444;
+  color: #aaaaaa;
   font-size: var(--fs-5);
   line-height: 1.8;
 }
@@ -390,7 +389,7 @@ blockquote {
 .status-text {
   font-family: "W95Fa", "Courier New", monospace;
   font-size: var(--fs-1);
-  color: #555555;
+  color: var(--status-text);
   letter-spacing: .12em;
   text-transform: uppercase;
 }
@@ -399,7 +398,7 @@ blockquote {
 .project-page .project-title {
   font-family: "W95Fa", "Courier New", monospace;
   font-size: var(--fs-heading);
-  color: #000000;
+  color: #ffffff;
   letter-spacing: .04em;
   text-transform: uppercase;
   line-height: 1.1;
@@ -594,7 +593,7 @@ blockquote {
 .panel-label {
   font-family: "W95Fa", "Courier New", monospace;
   font-size: var(--fs-3);
-  color: #000000;
+  color: var(--info-label);
   letter-spacing: .15em;
   text-transform: uppercase;
   margin-bottom: var(--sp-2);
@@ -606,7 +605,7 @@ blockquote {
 .panel-text {
   font-family: "W95Fa", "Courier New", monospace;
   font-size: var(--fs-5);
-  color: #222222;
+  color: #cccccc;
   line-height: 1.65;
 }
 
@@ -751,7 +750,7 @@ body.lightbox-open {
   gap: var(--sp-3);
   font-family: "W95Fa", "Courier New", monospace;
   font-size: var(--fs-5);
-  color: #000000;
+  color: var(--white);
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: .06em;
@@ -771,7 +770,7 @@ body.lightbox-open {
 
 .project-nav-link .nav-arrow {
   font-size: 1.1em;
-  color: #000000;
+  color: var(--white);
   transition: color .2s ease;
 }
 
