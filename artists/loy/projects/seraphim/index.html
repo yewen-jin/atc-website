@@ -16,7 +16,7 @@
       <div class="featured-panel project-media">
         <button class="gallery-nav-btn prev" type="button" aria-label="Previous media">←</button>
         <img class="featured-img" src="../../assets/8. Seraphim/seraphim-01.webp" alt="Seraphim cube sculpture and projection documentation" loading="eager" decoding="async"/>
-        <video class="featured-video" playsinline controls loop muted preload="metadata"></video>
+        <video class="featured-video" playsinline controls loop muted preload="none"></video>
         <button class="gallery-nav-btn next" type="button" aria-label="Next media">→</button>
         <span class="cctv-stamp-tr">CAM_04 // SERAPHIM</span>
         <span class="cctv-stamp">ARCHIVE // 06</span>
@@ -54,17 +54,17 @@
         <figure class="image-card" data-media-type="image" data-src="../../assets/8. Seraphim/seraphim-09.webp" data-alt="Seraphim shader view">
           <img src="../../assets/8. Seraphim/seraphim-09.webp" alt="Seraphim shader view" loading="lazy" decoding="async"/>
         </figure>
-        <figure class="image-card" data-media-type="video" data-src="../../assets/8. Seraphim/Screen recording 2026-03-01 01.31.00.webm" data-alt="Seraphim realtime screen recording">
+        <figure class="image-card" data-media-type="video" data-src="../../assets/8. Seraphim/seraphim-realtime-web.mp4" data-poster="../../assets/8. Seraphim/seraphim-realtime-poster.jpg" data-alt="Seraphim realtime screen recording">
           <span class="video-badge">▶ VIDEO</span>
-          <video src="../../assets/8. Seraphim/Screen recording 2026-03-01 01.31.00.webm" playsinline muted preload="metadata"></video>
+          <img src="../../assets/8. Seraphim/seraphim-realtime-poster.jpg" alt="Seraphim realtime screen recording" loading="lazy" decoding="async"/>
         </figure>
-        <figure class="image-card" data-media-type="video" data-src="../../assets/8. Seraphim/noise5.mp4" data-alt="Seraphim noise simulation">
+        <figure class="image-card" data-media-type="video" data-src="../../assets/8. Seraphim/noise5-optimized.mp4" data-poster="../../assets/8. Seraphim/noise5-poster.jpg" data-alt="Seraphim noise simulation">
           <span class="video-badge">▶ VIDEO</span>
-          <video src="../../assets/8. Seraphim/noise5.mp4" playsinline muted preload="metadata"></video>
+          <img src="../../assets/8. Seraphim/noise5-poster.jpg" alt="Seraphim noise simulation" loading="lazy" decoding="async"/>
         </figure>
-        <figure class="image-card" data-media-type="video" data-src="../../assets/8. Seraphim/noise5(1).mp4" data-alt="Seraphim noise simulation loop">
+        <figure class="image-card" data-media-type="video" data-src="../../assets/8. Seraphim/noise5-1-optimized.mp4" data-poster="../../assets/8. Seraphim/noise5-1-poster.jpg" data-alt="Seraphim noise simulation loop">
           <span class="video-badge">▶ VIDEO</span>
-          <video src="../../assets/8. Seraphim/noise5(1).mp4" playsinline muted preload="metadata"></video>
+          <img src="../../assets/8. Seraphim/noise5-1-poster.jpg" alt="Seraphim noise simulation loop" loading="lazy" decoding="async"/>
         </figure>
       </div>
       <div class="info-panel">
@@ -123,8 +123,9 @@
         const type = card.dataset.mediaType || 'image';
         const src = card.dataset.src || (type === 'video' ? card.querySelector('video')?.getAttribute('src') : card.querySelector('img')?.getAttribute('src'));
         const alt = card.dataset.alt || (type === 'video' ? 'Seraphim video' : card.querySelector('img')?.getAttribute('alt') || '');
+        const poster = card.dataset.poster || '';
         if (src && !mediaList.some(item => item.src === src)) {
-          mediaList.push({ type, src, alt });
+          mediaList.push({ type, src, alt, poster });
         }
       });
 
@@ -147,8 +148,10 @@
           if (featuredImg) featuredImg.classList.add('is-hidden');
           if (featuredVideo) {
             featuredVideo.classList.add('is-active');
-            if (featuredVideo.src !== current.src) {
+            featuredVideo.poster = current.poster;
+            if (featuredVideo.getAttribute('src') !== current.src) {
               featuredVideo.src = current.src;
+              featuredVideo.load();
             }
           }
         } else {
@@ -156,6 +159,8 @@
             featuredVideo.pause();
             featuredVideo.classList.remove('is-active');
             featuredVideo.removeAttribute('src');
+            featuredVideo.removeAttribute('poster');
+            featuredVideo.load();
           }
           if (featuredImg) {
             featuredImg.classList.remove('is-hidden');
@@ -170,16 +175,20 @@
             if (lightboxImg) lightboxImg.classList.add('is-hidden');
             if (lightboxVideo) {
               lightboxVideo.classList.add('is-active');
-              if (lightboxVideo.src !== current.src) {
+              lightboxVideo.poster = current.poster;
+              if (lightboxVideo.getAttribute('src') !== current.src) {
                 lightboxVideo.src = current.src;
-                lightboxVideo.play().catch(() => {});
+                lightboxVideo.load();
               }
+              lightboxVideo.play().catch(() => {});
             }
           } else {
             if (lightboxVideo) {
               lightboxVideo.pause();
               lightboxVideo.classList.remove('is-active');
               lightboxVideo.removeAttribute('src');
+              lightboxVideo.removeAttribute('poster');
+              lightboxVideo.load();
             }
             if (lightboxImg) {
               lightboxImg.classList.remove('is-hidden');
@@ -221,7 +230,9 @@
         if (lightboxVideo) {
           lightboxVideo.pause();
           lightboxVideo.removeAttribute('src');
+          lightboxVideo.removeAttribute('poster');
           lightboxVideo.classList.remove('is-active');
+          lightboxVideo.load();
         }
       }
 
