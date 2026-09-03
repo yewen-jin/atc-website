@@ -7,3 +7,7 @@ nvim.log
 !.dev.vars.example
 .env*
 !.env.example
+
+# Source master for Symone's loop — 708MB, exceeds GitHub and Cloudflare limits.
+# The deployed file is artists/symone/assets/videos/tbio-loop.mp4
+artists/symone/assets/gif/TBIO Gif website FV.gif
