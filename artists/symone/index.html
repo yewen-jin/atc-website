@@ -11,7 +11,9 @@
 
         <div class="page">
             <div class="title-bar">
-                <h1>Th3_B0dy_Is_0bsOL3t3</h1>
+                <h1 class="home-title" tabindex="0">
+                    Th3_B0dy_Is_0bsOL3t3
+                </h1>
             </div>
 
             <div class="main-layout">
@@ -55,15 +57,31 @@
                 <div class="content-area">
                     <!-- Enter Obsolence -->
                     <div class="section active" id="section-obsolence">
-                        <!-- Swap video-placeholder for a real <video> once src is available -->
-                        <div class="video-placeholder">
-                            <span class="video-label"
-                                >[ VIDEO PLAYS ON LOOP ]</span
-                            >
+                        <video
+                            class="content-video"
+                            src="assets/videos/tbio-loop.mp4"
+                            poster="assets/videos/tbio-loop-poster.jpg"
+                            autoplay
+                            loop
+                            muted
+                            playsinline
+                        ></video>
+                        <div class="intro-text">
+                            <p>
+                                Th3_B0dy_Is_0bsOL3t3 is a chatroom-based
+                                interactive experience where you attempt to
+                                recover pieces of yourself lost in cyberspace.
+                                It was presented February 2026 at Kollectiv Art
+                                Gallery as a part videogame installation for
+                                audiences and part durational pole performance.
+                                Here on this site, you can explore the work,
+                                "Enter Obsolescence" to play, or drift through
+                                the readings and texts surrounding the
+                                work’s meditation on bodies, technology,
+                                physical intimacy &amp; intelligence, and
+                                spectatorship.
+                            </p>
                         </div>
-                        <span class="note-tag"
-                            >video · autoplay · loop · muted</span
-                        >
                     </div>
 
                     <!-- Artist Reflections -->
@@ -281,19 +299,35 @@
         </div>
 
         <script>
+            function showSection(target) {
+                document
+                    .querySelectorAll(".nav-item")
+                    .forEach((n) => n.classList.remove("active"));
+                document
+                    .querySelectorAll(".section")
+                    .forEach((s) => s.classList.remove("active"));
+                document
+                    .querySelector('.nav-item[data-target="' + target + '"]')
+                    .classList.add("active");
+                document
+                    .getElementById("section-" + target)
+                    .classList.add("active");
+                document.querySelector(".content-area").scrollTop = 0;
+            }
+
             document.querySelectorAll(".nav-item").forEach((item) => {
-                item.addEventListener("click", () => {
-                    document
-                        .querySelectorAll(".nav-item")
-                        .forEach((n) => n.classList.remove("active"));
-                    document
-                        .querySelectorAll(".section")
-                        .forEach((s) => s.classList.remove("active"));
-                    item.classList.add("active");
-                    document
-                        .getElementById("section-" + item.dataset.target)
-                        .classList.add("active");
-                });
+                item.addEventListener("click", () =>
+                    showSection(item.dataset.target),
+                );
+            });
+
+            // Clicking the main title returns to the default video view.
+            const homeTitle = document.querySelector(".home-title");
+            homeTitle.addEventListener("click", () =>
+                showSection("obsolence"),
+            );
+            homeTitle.addEventListener("keydown", (e) => {
+                if (e.key === "Enter") showSection("obsolence");
             });
         </script>
     </body>
