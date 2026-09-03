@@ -1,32 +1,199 @@
-@font-face { font-family: "W95Fa"; src: url("../../../assets/fonts/W95FA.otf") format("opentype"); }
+/* Cold Beta: Closed Case — Jim Osman
+   Built to the ZX Spectrum design system in ./zx-spectrum-design-system/
+   8px grid · square corners · flat colour · bitmap type · no soft effects. */
+
+@font-face {
+  font-family: "W95FA";
+  src: url("../../../assets/fonts/W95FA.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pixeltype";
+  src: url("../../../assets/fonts/Pixeltype.ttf") format("truetype");
+  font-display: swap;
+}
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* Color */
-  --white: #f0f0f0;
-  --black: #000000;
+  /* Color — only the Spectrum values actually used */
+  --zx-black: #000000;
+  --zx-bright-white: #ffffff;
+  --zx-bright-cyan: #00ffff;
+  --zx-bright-yellow: #ffff00;
 
   /* Font size */
-  --fs-display: clamp(2rem, 9vw, 6rem);
+  --fs-1: 12px;   /* captions, key hints */
+  --fs-2: 16px;   /* body */
+  --fs-3: 32px;   /* Pixeltype section labels — its crispest size here */
 
-  /* Spacing */
-  --sp-1: 24px;
+  /* Spacing — 8px grid */
+  --sp-1: 8px;
+  --sp-2: 16px;
+  --sp-3: 24px;
+  --sp-4: 32px;
+
+  /* Text measure */
+  --col: 1024px;   /* centred content column */
+  /* Distance from the viewport edge to that column — the page's left edge. */
+  --gutter: max(var(--sp-3), calc((100% - var(--col)) / 2 + var(--sp-3)));
+  --banner-h: 33vh;  /* title screen height */
+  --shot-h: 280px; /* installation photo row height */
+  --rule: 2px;     /* hairline between plates — the system's max border width */
+  --measure: 68ch;
 }
 
 body {
   min-height: 100vh;
-  background-color: var(--black);
-  color: var(--white);
-  font-family: "W95Fa", "Courier New", monospace;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--sp-1);
+  background: var(--zx-black);
+  color: var(--zx-bright-white);
+  font-family: "W95FA", "Courier New", monospace;
+  font-size: var(--fs-2);
+  line-height: 1.25;
+  letter-spacing: 0;
 }
 
-.coming-soon {
-  font-size: var(--fs-display);
-  line-height: 1.1;
-  text-align: center;
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Status bar ------------------------------------------------------------- */
+
+.zx-bar {
+  padding: var(--sp-1) var(--gutter);
+  font-size: var(--fs-1);
+}
+
+.zx-bar--end {
+  padding-top: var(--sp-2);
+  padding-bottom: var(--sp-2);
+}
+
+/* Text action — no button chrome; reverses to cyan for hover and focus. */
+.zx-key {
+  display: inline-block;
+  color: var(--zx-bright-white);
+  text-decoration: none;
+  /* Padding gives the reversed state breathing room; the negative margin keeps
+     the glyphs themselves on the page's left edge. */
+  padding: 0 var(--sp-1);
+  margin-left: calc(var(--sp-1) * -1);
+}
+
+.zx-key:hover,
+.zx-key:focus-visible {
+  background: var(--zx-bright-cyan);
+  color: var(--zx-black);
+  outline: none;
+}
+
+/* Banner ----------------------------------------------------------------- */
+
+/* Title screen: top of the page, left edge shared with the prose and the
+   installation photos, about a third of the viewport tall. Both dimensions
+   auto so the two caps scale it without distortion — height leads on desktop,
+   width takes over once the screen is narrow. */
+.zx-banner {
+  line-height: 0;
+  padding: 0 var(--gutter);
+}
+
+.zx-banner img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: var(--banner-h);
+}
+
+/* Page column ------------------------------------------------------------ */
+
+.zx-page {
+  max-width: var(--col);
+  margin: 0 auto;
+  padding: var(--sp-4) var(--sp-3);
+}
+
+.zx-prose {
+  max-width: var(--measure);
+}
+
+.zx-prose strong {
+  font-weight: normal;
+  color: var(--zx-bright-yellow);
+}
+
+/* Section label — full-bleed reversed strip, doubles as the divider ------- */
+
+.zx-label {
+  background: var(--zx-bright-white);
+  color: var(--zx-black);
+  font-family: "Pixeltype", "W95FA", "Courier New", monospace;
+  font-size: var(--fs-3);
+  font-weight: normal;
+  line-height: 1;
+  /* Full-bleed strip, but its text starts on the same left edge as the
+     centred column below it. */
+  padding: var(--sp-1) var(--gutter);
+}
+
+/* Installation photos ---------------------------------------------------- */
+
+.zx-shots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+}
+
+/* Side by side: matched height, natural width — whole photo, no crop, no
+   distortion. 280px is the tallest row that never upscales exhibition-02
+   (400x284 native). */
+.zx-shot {
+  width: auto;
+  height: var(--shot-h);
+}
+
+/* Illustration plates — full bleed, separated by a hairline --------------- */
+
+.zx-plates {
+  display: grid;
+  gap: var(--rule);
+}
+
+/* Nearest-neighbour only when the 1-bit art is genuinely upscaled.
+   Below its native 1584px the dither shreds into aliased speckle, so the
+   browser's default filtering reads better. */
+
+@media (min-width: 1584px) {
+  .zx-banner img,
+  .zx-plates img {
+    image-rendering: pixelated;
+  }
+}
+
+/* Below the width the photo row needs (681px of photos + page padding), the
+   photos stack instead: matched width, natural height, still uncropped. */
+
+@media (max-width: 736px) {
+  .zx-shot {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Narrow screens --------------------------------------------------------- */
+
+@media (max-width: 560px) {
+  .zx-bar,
+  .zx-label,
+  .zx-banner {
+    padding-left: var(--sp-2);
+    padding-right: var(--sp-2);
+  }
+
+  .zx-page {
+    padding: var(--sp-3) var(--sp-2);
+  }
 }
