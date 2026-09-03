@@ -7,13 +7,9 @@
         <link rel="stylesheet" href="assets/theme.css" />
     </head>
     <body>
-        <a href="../../index.html" class="back-link">← Home</a>
-
         <div class="page">
             <div class="title-bar">
-                <h1 class="home-title" tabindex="0">
-                    Th3_B0dy_Is_0bsOL3t3
-                </h1>
+                <h1 class="home-title" tabindex="0">Th3_B0dy_Is_0bsOL3t3</h1>
             </div>
 
             <div class="main-layout">
@@ -30,7 +26,7 @@
                                 src="assets/gif/Hand_Transp.gif"
                             />
 
-                            <span class="nav-label">Enter Obsolence</span>
+                            <span class="nav-label">Enter Obsolescence</span>
                         </div>
                     </a>
                     <div class="nav-item" data-target="reflections">
@@ -55,7 +51,7 @@
 
                 <!-- Content -->
                 <div class="content-area">
-                    <!-- Enter Obsolence -->
+                    <!-- Enter Obsolescence -->
                     <div class="section active" id="section-obsolence">
                         <video
                             class="content-video"
@@ -76,10 +72,9 @@
                                 audiences and part durational pole performance.
                                 Here on this site, you can explore the work,
                                 "Enter Obsolescence" to play, or drift through
-                                the readings and texts surrounding the
-                                work’s meditation on bodies, technology,
-                                physical intimacy &amp; intelligence, and
-                                spectatorship.
+                                the readings and texts surrounding the work’s
+                                meditation on bodies, technology, physical
+                                intimacy &amp; intelligence, and spectatorship.
                             </p>
                         </div>
                     </div>
@@ -267,18 +262,28 @@
                             />
                             <p>
                                 Instagram
-                                <a href="https://instagram.com/symoneforever"
+                                <a
+                                    href="https://instagram.com/symoneforever"
+                                    target="_blank"
                                     >@symoneforever</a
                                 >
                                 ·
                                 <a
                                     href="https://instagram.com/productionsbysymone"
+                                    target="_blank"
                                     >@productionsbysymone</a
                                 ><br />
-                                <a href="https://www.symoneperformingartist.com"
+                                <a
+                                    href="https://www.symoneperformingartist.com"
+                                    target="_blank"
                                     >www.symoneperformingartist.com</a
                                 ><br />
-                                productions@symone performing artist . com
+                                <a
+                                    href="mailto:productions@symoneperformingartist.com"
+                                    target="_blank"
+                                >
+                                    productions@symoneperformingartist.com
+                                </a>
                             </p>
                             <p class="credits-heading">
                                 <strong>Credits</strong>
@@ -295,6 +300,8 @@
                         </div>
                     </div>
                 </div>
+
+                <a href="../../index.html" class="back-link">← Home</a>
             </div>
         </div>
 
@@ -323,9 +330,7 @@
 
             // Clicking the main title returns to the default video view.
             const homeTitle = document.querySelector(".home-title");
-            homeTitle.addEventListener("click", () =>
-                showSection("obsolence"),
-            );
+            homeTitle.addEventListener("click", () => showSection("obsolence"));
             homeTitle.addEventListener("keydown", (e) => {
                 if (e.key === "Enter") showSection("obsolence");
             });
