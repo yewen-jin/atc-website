@@ -117,10 +117,6 @@ body {
     gap: var(--sp-2);
     cursor: pointer;
     padding: var(--sp-3) var(--sp-4);
-    transition: background 0.2s;
-}
-.nav-item:hover {
-    background: rgba(0, 0, 0, 0.06);
 }
 .nav-item.active .nav-label {
     text-decoration: underline;
@@ -135,6 +131,10 @@ body {
     overflow: hidden;
     flex-shrink: 0;
     object-fit: contain;
+    transition: transform 0.2s ease;
+}
+.nav-item:hover .nav-icon {
+    transform: scale(1.15) rotate(25deg);
 }
 
 /* Each icon gets its own holographic gradient */
