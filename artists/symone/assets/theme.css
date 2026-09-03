@@ -50,7 +50,6 @@
     --sp-7: 20px;
     --sp-8: 24px;
     --sp-9: 32px;
-    --sp-10: 48px;
 }
 
 body {
@@ -430,6 +429,21 @@ body {
     line-height: 1.55;
 }
 
+/* ── BACK LINK ── */
+.back-link {
+    display: block;
+    width: fit-content;
+    margin-inline: auto;
+    padding: var(--sp-3) var(--sp-4);
+    font-family: "FreePixel", "W95Fa", monospace;
+    font-size: var(--fs-6);
+    color: var(--ink);
+    text-decoration: underline;
+}
+.back-link:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
 @media (min-width: 761px) {
     body {
         height: 100vh;
@@ -440,6 +454,33 @@ body {
         height: calc(100vh - var(--sp-8) - var(--sp-8));
         display: grid;
         grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    /* Two columns: the nav stack with the home link directly beneath it,
+       and the content panel spanning both rows so it keeps full height
+       and never overlaps the link. */
+    .main-layout {
+        display: grid;
+        grid-template-columns: 230px minmax(0, 1fr);
+        grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .left-nav {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .back-link {
+        grid-column: 1;
+        grid-row: 2;
+        align-self: end;
+        justify-self: start;
+        margin-inline: 0;
+    }
+
+    .content-area {
+        grid-column: 2;
+        grid-row: 1 / -1;
     }
 
     .title-bar,
@@ -518,14 +559,8 @@ body {
         font-size: var(--fs-3);
     }
 
-    /* The back link is fixed, so the centred title has to start below it
-       or the two collide on a narrow screen. */
     .back-link {
         font-size: var(--fs-3);
-    }
-
-    .title-bar {
-        padding-top: var(--sp-10);
     }
 
     .content-area,
@@ -546,26 +581,4 @@ body {
     .section-body {
         padding: var(--sp-6);
     }
-}
-
-/* ── BACK LINK ── */
-.back-link {
-    display: inline-block;
-    position: fixed;
-    top: var(--sp-5);
-    left: var(--sp-5);
-    z-index: 20;
-    margin-top: 0;
-    padding: var(--sp-2) var(--sp-4);
-    border-radius: 6px;
-    background: var(--ink);
-    font-family: "W95Fa", monospace;
-    font-size: calc(var(--fs-2) * 2);
-    color: #fff;
-    text-decoration: none;
-    transition: background 0.2s, color 0.2s;
-}
-.back-link:hover {
-    background: #fff;
-    color: var(--ink);
 }
