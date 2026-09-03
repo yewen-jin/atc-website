@@ -50,6 +50,7 @@
     --sp-7: 20px;
     --sp-8: 24px;
     --sp-9: 32px;
+    --sp-10: 48px;
 }
 
 body {
@@ -482,17 +483,49 @@ body {
     .left-nav {
         width: 100%;
         flex-direction: row;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         padding: 0 0 var(--sp-5);
     }
 
+    /* Four equal columns across one row. The first item is wrapped in an
+       <a>, so the flex children are <a> + three .nav-item divs — size the
+       nav's direct children rather than .nav-item itself. */
+    .left-nav > * {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
     .nav-item {
-        width: calc(50% - var(--sp-2));
+        width: auto;
+        align-items: center;
+        text-align: center;
+        padding: var(--sp-1);
     }
 
     .nav-icon {
-        width: 96px;
-        height: 88px;
+        width: 100%;
+        max-width: 64px;
+        height: auto;
+        aspect-ratio: 128 / 116;
+    }
+
+    .nav-label {
+        font-size: var(--fs-1);
+    }
+
+    .section-body,
+    .intro-text {
+        font-size: var(--fs-3);
+    }
+
+    /* The back link is fixed, so the centred title has to start below it
+       or the two collide on a narrow screen. */
+    .back-link {
+        font-size: var(--fs-3);
+    }
+
+    .title-bar {
+        padding-top: var(--sp-10);
     }
 
     .content-area,
