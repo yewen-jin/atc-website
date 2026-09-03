@@ -13,8 +13,8 @@
         format("truetype");
 }
 @font-face {
-    font-family: "Pixeltype";
-    src: url("../../../assets/fonts/Pixeltype.ttf") format("truetype");
+    font-family: "FreePixel";
+    src: url("../../../assets/fonts/FreePixel.ttf") format("truetype");
 }
 
 * {
@@ -36,7 +36,7 @@
     --fs-3: 1rem;
     --fs-4: 26px;
     --fs-5: 28px;
-    --fs-6: 32px;
+    --fs-6: 22px;
     --fs-7: 2.2rem;
     --fs-display: clamp(2rem, 5vw, 3.8rem);
 
@@ -54,7 +54,7 @@
 
 body {
     background: var(--page-bg);
-    font-family: "Pixeltype", "W95Fa", "Courier New", monospace;
+    font-family: "FreePixel", "W95Fa", "Courier New", monospace;
     min-height: 100vh;
     display: flex;
     align-items: flex-start;
@@ -244,7 +244,7 @@ body {
 }
 
 .nav-label {
-    font-family: "Pixeltype", "W95Fa", monospace;
+    font-family: "FreePixel", "W95Fa", monospace;
     font-size: var(--fs-6);
     color: var(--ink);
     line-height: 1.2;
@@ -359,10 +359,10 @@ body {
     width: 100%;
     max-width: 860px;
     margin-top: var(--sp-7);
-    font-family: "Pixeltype", "W95Fa", monospace;
+    font-family: "FreePixel", "W95Fa", monospace;
     font-size: var(--fs-6);
     color: var(--ink);
-    line-height: 1;
+    line-height: 1.4;
 }
 
 .note-tag {
@@ -390,10 +390,10 @@ body {
 }
 
 .section-body {
-    font-family: "Pixeltype", "W95Fa", monospace;
+    font-family: "FreePixel", "W95Fa", monospace;
     font-size: var(--fs-6);
     color: var(--ink);
-    line-height: 1;
+    line-height: 1.4;
     width: 100%;
     max-width: none;
     background: rgba(255, 255, 255, 0.3);
@@ -426,7 +426,7 @@ body {
     margin-top: var(--sp-7);
     font-style: italic;
     letter-spacing: 0.04em;
-    line-height: 1.1;
+    line-height: 1.55;
 }
 
 @media (min-width: 761px) {
