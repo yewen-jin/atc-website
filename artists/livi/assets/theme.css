@@ -11,6 +11,7 @@
   --teal-dark: #004946;
   --teal-mid: #007d7c;
   --pink: #f02686;
+  --chrome-silver: #96aeb4;
   --button-shadow: rgba(0, 42, 44, 0.28);
   --panel-shadow: rgba(0, 0, 0, 0.14);
 
@@ -31,6 +32,7 @@
   --sp-6: 24px;
   --sp-7: 32px;
   --sp-8: 44px;
+  --sp-9: 96px;
 }
 
 body {
@@ -185,6 +187,50 @@ body {
   line-height: 1.5;
 }
 
+.text-panel::-webkit-scrollbar {
+  width: 10px;
+}
+
+.text-panel::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 0 0 1px rgba(0, 73, 70, 0.08);
+}
+
+.text-panel::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: linear-gradient(
+      to right,
+      rgba(150, 174, 180, 0.55) 0%,
+      rgba(255, 255, 255, 0.95) 24%,
+      rgba(228, 240, 242, 0.9) 44%,
+      rgba(152, 176, 182, 0.6) 76%,
+      rgba(212, 228, 231, 0.85) 100%
+    ) padding-box;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.text-panel::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+      to right,
+      rgba(168, 192, 198, 0.7) 0%,
+      rgba(255, 255, 255, 1) 24%,
+      rgba(240, 250, 252, 0.96) 44%,
+      rgba(168, 192, 198, 0.72) 76%,
+      rgba(226, 240, 243, 0.92) 100%
+    ) padding-box;
+}
+
+/* Firefox has no scrollbar pseudo-elements, and setting these in Chrome would
+   switch the gradient thumb above back off — so scope the flat fallback. */
+@supports not selector(::-webkit-scrollbar) {
+  .text-panel {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(196, 214, 218, 0.85) rgba(255, 255, 255, 0.22);
+  }
+}
+
 .text-panel p {
   margin-bottom: var(--sp-4);
 }
@@ -202,8 +248,8 @@ body {
 .text-panel blockquote {
   margin: var(--sp-4) 0;
   padding: var(--sp-3) var(--sp-4);
-  border-left: 6px solid var(--pink);
-  border-radius: 0 18px 18px 0;
+  border: 3px solid var(--chrome-silver);
+  border-radius: 18px;
   background: rgba(255, 255, 255, 0.7);
   font-style: italic;
 }
@@ -212,23 +258,34 @@ body {
   margin: 0 0 var(--sp-4);
 }
 
+.tablet-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--sp-6);
+}
+
+.tablet-copy > :last-child {
+  margin-bottom: 0;
+}
+
 .image-pair {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
   gap: var(--sp-4);
-  margin-bottom: var(--sp-4);
+  margin-bottom: 0;
 }
 
 .image-pair .image-figure {
-  flex: 1 1 0;
+  flex: 0 0 auto;
+  width: min(100%, 300px);
   min-width: 0;
-  margin-bottom: 0;
+  margin: 0 auto;
 }
 
 .image-pair .image-figure .featured-image {
   width: 100%;
   height: auto;
-  max-height: none;
   margin: 0;
 }
 
@@ -253,15 +310,7 @@ body {
 }
 
 .installation-view .featured-image {
-  max-height: 300px;
-}
-
-.image-figure figcaption {
-  margin-top: var(--sp-2);
-  color: var(--panel-muted);
-  font-size: var(--fs-1);
-  text-align: center;
-  font-style: italic;
+  max-height: none;
 }
 
 .slideshow {
@@ -283,7 +332,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--sp-5) var(--sp-4) calc(var(--sp-6) + 30px);
+  padding: var(--sp-5) var(--sp-4);
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.46);
   overflow: hidden;
@@ -327,19 +376,6 @@ body {
 .slide-control-next {
   right: 20px;
   background-image: url("frames/right.png");
-}
-
-.slide-caption {
-  position: absolute;
-  left: var(--sp-4);
-  right: var(--sp-4);
-  bottom: var(--sp-3);
-  padding: var(--sp-2) var(--sp-3);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.74);
-  color: var(--panel-muted);
-  font-size: var(--fs-2);
-  text-align: center;
 }
 
 .thumbnail-strip {
@@ -434,18 +470,27 @@ body {
   top: var(--sp-4);
   left: var(--sp-4);
   z-index: 20;
-  padding: var(--sp-2) var(--sp-4);
-  border-radius: 6px;
-  background: var(--teal-dark);
-  color: #fff;
-  font-size: calc(var(--fs-2) * 2);
+  width: clamp(64px, 7vw, 96px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  background: transparent url("frames/button-4.png") center / contain no-repeat;
+  color: var(--panel-text);
+  font-family: "W95Fa", "Courier New", monospace;
+  font-size: var(--fs-5);
+  line-height: 1;
+  text-align: center;
   text-decoration: none;
-  transition: background 0.15s, color 0.15s;
+  filter: drop-shadow(0 10px 14px var(--button-shadow));
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.84),
+    0 4px 12px rgba(255, 255, 255, 0.72);
+  transition: filter 180ms ease, transform 180ms ease;
 }
 
 .back-link:hover {
-  background: var(--pink);
-  color: #fff;
+  filter: drop-shadow(0 14px 18px var(--button-shadow)) brightness(1.05) saturate(1.12);
+  transform: scale(1.04);
 }
 
 @media (max-width: 980px) {
@@ -458,10 +503,14 @@ body {
     place-items: start center;
   }
 
+  .back-link {
+    width: clamp(58px, 13vw, 76px);
+  }
+
   .livi-console {
     aspect-ratio: auto;
     min-height: auto;
-    padding-top: clamp(150px, 28vw, 210px);
+    padding-top: calc(clamp(150px, 28vw, 210px) + var(--sp-9));
   }
 
   .livi-console::after { display: none; }
@@ -469,7 +518,7 @@ body {
   .console-title { display: none; }
 
   .pill-nav {
-    top: 0;
+    top: var(--sp-9);
     left: 0;
     right: 0;
     bottom: auto;
@@ -519,6 +568,20 @@ body {
     height: 520px;
   }
 
+  .tablet-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-4);
+  }
+
+  .image-pair {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .image-pair .image-figure {
+    flex: 1 1 0;
+  }
+
   .slideshow {
     height: 560px;
   }
@@ -530,7 +593,7 @@ body {
   }
 
   .livi-console {
-    padding-top: 128px;
+    padding-top: calc(128px + var(--sp-9));
   }
 
   .pill-btn {
@@ -551,10 +614,6 @@ body {
 
   .slideshow {
     height: 500px;
-  }
-
-  .slide-caption {
-    font-size: var(--fs-1);
   }
 
   .thumbnail-strip {
