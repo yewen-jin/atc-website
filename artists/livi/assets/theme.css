@@ -32,7 +32,8 @@
   --sp-6: 24px;
   --sp-7: 32px;
   --sp-8: 44px;
-  --sp-9: 96px;
+  /* clears the fixed Home button: tracks its mobile width plus a gap */
+  --sp-9: calc(clamp(58px, 13vw, 76px) + var(--sp-2));
 }
 
 body {
