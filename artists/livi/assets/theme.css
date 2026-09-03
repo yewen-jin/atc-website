@@ -332,16 +332,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--sp-5) var(--sp-4);
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.46);
   overflow: hidden;
 }
 
 .slide-image {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  max-height: 100%;
   object-fit: contain;
   cursor: zoom-in;
 }
@@ -391,7 +391,7 @@ body {
 .thumb-btn {
   min-width: 0;
   min-height: 0;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   border: 2px solid rgba(0, 73, 70, 0.38);
   border-radius: 9px;
   background: rgba(255, 255, 255, 0.48);
@@ -462,7 +462,7 @@ body {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .back-link {
@@ -583,8 +583,12 @@ body {
     flex: 1 1 0;
   }
 
+  .slide-frame {
+    width: calc(100% - 90px);
+  }
+
   .slideshow {
-    height: 560px;
+    height: auto;
   }
 }
 
@@ -611,10 +615,6 @@ body {
   .text-panel {
     height: 470px;
     padding: var(--sp-4);
-  }
-
-  .slideshow {
-    height: 500px;
   }
 
   .thumbnail-strip {
