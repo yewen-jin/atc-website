@@ -86,6 +86,7 @@ The outer chrome frame is applied with:
 - `left: 50%` plus `translateX(-50%)` keeps it centered.
 - Increase `width` to make the title frame larger.
 - `padding` inside `.title-console` controls the logo inset.
+- `.title-console a` is `width: 100%; justify-content: center` so the logo stays centred once `.site-logo`'s max-width cap is narrower than the console's inner width.
 - `.site-logo` controls the logo image size and glow.
 - `.site-logo transform: translateY(...)` shifts the logo vertically within the title frame without moving the frame-title.png background. Negative values move it up.
 - The logo is wrapped in `<a href="/about">` — clicking the logo navigates to the about page.
@@ -217,12 +218,16 @@ At `max-width: 980px`:
 - The outer frame overlay is hidden.
 - `.title-console`, `.content`, and `.orbit-panel` become relative grid items.
 - Large raster chrome frames are replaced by bordered neon panels so the layout does not distort.
+- The desktop `translateY` nudges on `.site-logo` and `.glowing-text` are reset to `transform: none`. Those offsets only exist to line the logo and statement text up with the off-centre openings in `frame-title.png` / `frame-statement-alt.png`; the mobile panels are plain boxes, so the logo and the about text sit centred in them instead.
+- The four artist orbs sit two per row for the whole mobile range. `.artist-orb` becomes `width: min(100%, 200px)`, so they hold 200px while the columns are wide enough and shrink with the columns below that.
+- `.orbit-left` is `justify-content: flex-end` and `.orbit-right` is `flex-start`, so each row's pair sits against the centre gutter instead of floating in the middle of its half. The gutter is the shell's column gap — tighten or loosen the pair there, not on `.artist-orb`. `.about-page .orbit-panel` re-centres the single home orb.
+- `.orbit-panel` carries a `-10px` block margin. `frame-orb.png` has about 10% transparent margin at its sides but 13% top / 16% bottom, so equal grid gaps look airier between the rows than between the columns; the negative margin cancels the difference. Re-measure it if the orb asset is replaced.
 
 At `max-width: 560px`:
 
-- The layout stacks into one column.
-- Each orbit gets its own row.
-- The title and statement panels receive tighter padding and smaller minimum heights.
+- The grid keeps the two columns from the 980px breakpoint; only the title console, statement panel, about text frames, sigil strip, and footer span `1 / -1`.
+- The column gutter tightens to `clamp(8px, 2.4vw, 14px)` and `.artist-orb span` drops to `clamp(0.72rem, 4vw, 1.15rem)` so the labels keep pace with the shrinking orbs instead of crossing the chrome ring.
+- `.hud-shell` drops to a flat `16px` padding and a `14px` row gap. The title and statement panels keep the padding clamps set at the 980px breakpoint, which have already bottomed out at these widths.
 
 When changing desktop positioning, check these mobile overrides so the artist links do not overlap the title or statement panel.
 
