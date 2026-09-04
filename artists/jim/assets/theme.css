@@ -23,10 +23,13 @@
   --zx-bright-cyan: #00ffff;
   --zx-bright-yellow: #ffff00;
 
-  /* Font size */
-  --fs-1: 12px;   /* captions, key hints */
-  --fs-2: 16px;   /* body */
-  --fs-3: 32px;   /* Pixeltype section labels — its crispest size here */
+  /* Font size — exactly 1.2x the original 12/16/32 scale. The fractional
+     values are deliberate: whole-pixel roundings look crisper on a 1x display
+     but worse at 2x and 3x, so there is no size to round to that wins
+     everywhere. */
+  --fs-1: 14.4px;   /* key hints */
+  --fs-2: 19.2px;   /* body */
+  --fs-3: 38.4px;   /* Pixeltype section labels */
 
   /* Spacing — 8px grid */
   --sp-1: 8px;
